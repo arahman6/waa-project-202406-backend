@@ -5,22 +5,25 @@ import com.example.ecommerce.entity.user.User;
 import java.util.List;
 
 import com.example.ecommerce.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
+
+    private final UserRepository userRepository;
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
     public User getUserById(Integer id) {
-        return userRepository.findById(id).orElse(null);
+        return userRepository.findById(id).orElseThrow(()->new UsernameNotFoundException("User not found"));
     }
 
     public User createUser(User user) {

@@ -16,7 +16,7 @@ public class Cart {
     @OneToOne
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
     private List<Item> cartItems;
 
     // Getters and Setters

@@ -19,7 +19,7 @@ public class User {
     private String phone;
     private boolean enable;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Address address;
 
     @Enumerated(EnumType.STRING)

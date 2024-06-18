@@ -17,5 +17,10 @@ public class Item {
     private Integer quantity;
     private Double price;
 
+    @ManyToOne
+    private Cart cart;
+
+    @ManyToOne
+    private Order order;
 }
 

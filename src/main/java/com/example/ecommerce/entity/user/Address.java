@@ -16,7 +16,7 @@ public class Address {
     private String postalCode;
     private String country;
 
-    @OneToOne(mappedBy = "address")
+    @OneToOne(mappedBy = "address", fetch = FetchType.LAZY)
     private User user;
 
     // Getters and Setters
