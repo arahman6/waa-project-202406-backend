@@ -3,6 +3,8 @@ package com.example.ecommerce.entity.user;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "users")
@@ -22,7 +24,9 @@ public class User {
     @OneToOne
     private Address address;
 
-    @Enumerated(EnumType.STRING)
-    private UserRole role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable
+    private List<Role> roles;
+
 }
 

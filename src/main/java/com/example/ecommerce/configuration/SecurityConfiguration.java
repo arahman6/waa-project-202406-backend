@@ -27,7 +27,7 @@ public class SecurityConfiguration {
     private final UserDetailsService userDetailsService;
     private final JwtFilter jwtFilter;
 
-    String[] roles = {"CLIENT", "ADMIN"};
+    String[] roles = {"ADMIN", "BUYER", "SELLER"};
 
 
     @Bean
@@ -43,19 +43,19 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(AbstractHttpConfigurer::disable)
-            .authorizeHttpRequests(
-                auth -> auth
-                    .requestMatchers("api/v1/authenticate/**").permitAll()
-//                    .requestMatchers("/api/v1/users").hasAnyAuthority(roles)
-                    .anyRequest()
-                    .authenticated()
-            )
-            .sessionManagement(
-                session -> session
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Use stateless sessions
-            )
-            .httpBasic(withDefaults());
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(
+                        auth -> auth
+                                .requestMatchers("api/v1/authenticate/**").permitAll()
+                                .requestMatchers("/api/v1/users").hasAnyAuthority(roles)
+                                .anyRequest()
+                                .authenticated()
+                )
+                .sessionManagement(
+                        session -> session
+                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Use stateless sessions
+                )
+                .httpBasic(withDefaults());
 
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
