@@ -1,3 +1,16 @@
+INSERT INTO users (id, username, password, email, first_name, last_name, role, enable) VALUES
+                                                                                           (1, 'admin', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'admin@example.com', 'Admin', 'User', 'ADMIN', true),
+                                                                                           (2, 'buyer1', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'buyer1@example.com', 'Buyer', 'One', 'BUYER', true),
+                                                                                           (3, 'buyer2', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'buyer2@example.com', 'Buyer', 'Two', 'BUYER', true),
+                                                                                           (4, 'buyer3', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'buyer3@example.com', 'Buyer', 'Three', 'BUYER', true),
+                                                                                           (5, 'seller1', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'seller1@example.com', 'Seller', 'One', 'SELLER', true),
+                                                                                           (6, 'seller2', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'seller2@example.com', 'Seller', 'Two', 'SELLER', true),
+                                                                                           (7, 'seller3', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'seller3@example.com', 'Seller', 'Three', 'SELLER', true),
+                                                                                           (8, 'seller4', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'seller4@example.com', 'Seller', 'Four', 'SELLER', true),
+                                                                                           (9, 'buyer4', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'buyer4@example.com', 'Buyer', 'Four', 'BUYER', true),
+                                                                                           (10, 'buyer5', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'buyer5@example.com', 'Buyer', 'Five', 'BUYER', true);
+-- Inserting sample Addresses
+
 SELECT 1;
 
 
@@ -39,6 +52,7 @@ VALUES (3, 3);
 -- (10, 'buyer5', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'buyer5@example.com', 'Buyer', 'Five', 'BUYER');
 --
 -- -- Inserting sample Addresses
+
 -- INSERT INTO address (id, street, city, state, postal_code, country, user_id) VALUES
 --                                                                                  (1, '123 Main St', 'Anytown', 'Anystate', '12345', 'USA', 1),
 --                                                                                  (2, '456 Oak St', 'Othertown', 'Otherstate', '67890', 'USA', 2),
@@ -87,7 +101,11 @@ VALUES (3, 3);
 --                                                                                                    (6, 'LG Washing Machine', 'Top load washing machine', 399.99, 'lg.jpg', 15, 4),
 --                                                                                                    (7, 'The Great Gatsby', 'Classic novel by F. Scott Fitzgerald', 10.99, 'gatsby.jpg', 100, 5),
 --                                                                                                    (8, 'Sapiens', 'A Brief History of Humankind by Yuval Noah Harari', 15.99, 'sapiens.jpg', 80, 6),
+
+--                                                                                                    (9, 'Levis Jeans', 'Comfortable jeans', 39.99, 'levis.jpg', 60, 7),
+
 --                                                                                                    (9, 'Levi\'s Jeans', 'Comfortable jeans', 39.99, 'levis.jpg', 60, 7),
+
 -- (10, 'Nike Running Shoes', 'Lightweight running shoes', 59.99, 'nike.jpg', 40, 8);
 --
 -- -- Inserting sample Orders
@@ -136,7 +154,11 @@ VALUES (3, 3);
 -- (3, 4, 3, 'THREE', 'Average laptop', '2024-06-13T12:00:00'),
 -- (4, 5, 4, 'FIVE', 'Excellent laptop', '2024-06-12T13:00:00'),
 -- (5, 6, 5, 'FOUR', 'Good refrigerator', '2024-06-11T14:00:00'),
+
+-- (6, 7, 6, 'THREE', 'Its okay', '2024-06-10T15:00:00'),
+
 -- (6, 7, 6, 'THREE', 'It\'s okay', '2024-06-10T15:00:00'),
+
 --                                                                                                    (7, 8, 7, 'FIVE', 'Loved it!', '2024-06-09T16:00:00'),
 --                                                                                                    (8, 9, 8, 'FOUR', 'Very interesting book', '2024-06-08T17:00:00'),
 --                                                                                                    (9, 10, 9, 'FOUR', 'Comfortable jeans', '2024-06-07T18:00:00'),

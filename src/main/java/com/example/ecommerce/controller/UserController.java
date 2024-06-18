@@ -1,41 +1,22 @@
 package com.example.ecommerce.controller;
 
+import com.example.ecommerce.controller.generic.GenericControllerImpl;
+import com.example.ecommerce.entity.dto.request.UserRequest;
+import com.example.ecommerce.entity.dto.response.UserResponse;
 import com.example.ecommerce.entity.user.User;
 import com.example.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/users")
-public class UserController {
+public class UserController extends GenericControllerImpl<User, UserRequest, UserResponse, Long> {
     @Autowired
-    private UserService userService;
+    UserService userService;
 
-    @GetMapping
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
-    }
-
-    @GetMapping("/{id}")
-    public User getUserById(@PathVariable Integer id) {
-        return userService.getUserById(id);
-    }
-
-    @PostMapping
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
-    }
-
-    @PutMapping("/{id}")
-    public User updateUser(@PathVariable Integer id, @RequestBody User userDetails) {
-        return userService.updateUser(id, userDetails);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Integer id) {
-        userService.deleteUser(id);
+    public UserController(UserService userService){
+        super(userService);
     }
 
     @GetMapping("/email/{emailId}")
@@ -43,5 +24,3 @@ public class UserController {
         return userService.getUserByEmail(emailId);
     }
 }
-
-
