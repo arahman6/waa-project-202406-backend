@@ -25,4 +25,8 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
         super(userRepository, modelMapper, listMapper);
     }
 
+    @Override
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 }
