@@ -3,6 +3,7 @@ package com.example.ecommerce.service.impl;
 import com.example.ecommerce.entity.dto.request.LoginRequest;
 import com.example.ecommerce.entity.dto.request.RefreshTokenRequest;
 import com.example.ecommerce.entity.dto.response.LoginResponse;
+import com.example.ecommerce.repository.UserRepository;
 import com.example.ecommerce.service.AuthService;
 import com.example.ecommerce.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ public class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
+    private final UserRepository userRepository;
 
     @Override
     public LoginResponse login(LoginRequest loginRequest) {

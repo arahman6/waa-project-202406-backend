@@ -24,4 +24,5 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
     public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, ListMapper listMapper){
         super(userRepository, modelMapper, listMapper);
     }
+
 }
