@@ -7,5 +7,5 @@ import com.example.ecommerce.service.generic.GenericService;
 
 
 public interface UserService extends GenericService<User, UserRequest, UserResponse, Long> {
-    User findUserByEmail(String email);
+    User getUserByEmail(String email);
 }

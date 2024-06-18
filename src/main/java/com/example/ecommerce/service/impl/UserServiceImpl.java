@@ -26,7 +26,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
     }
 
     @Override
-    public User findUserByEmail(String email) {
+    public User getUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 }
