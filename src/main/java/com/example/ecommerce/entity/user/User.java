@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -26,7 +28,9 @@ public class User {
     @OneToOne
     private Address address;
 
-    @Enumerated(EnumType.STRING)
-    private UserRole role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable
+    private List<Role> roles;
+
 }
 
