@@ -1,5 +1,3 @@
-
-
 SELECT 1;
 
 
@@ -60,9 +58,4 @@ INSERT INTO cart (id, user_id) VALUES
                                    (1, 1),
                                    (2, 2),
                                    (3, 3);
-
-
-
-
-
 
