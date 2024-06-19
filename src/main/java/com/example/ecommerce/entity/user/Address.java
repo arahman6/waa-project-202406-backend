@@ -16,9 +16,8 @@ public class Address {
     private String postalCode;
     private String country;
 
-    @OneToOne(mappedBy = "address")
+    @OneToOne
     private User user;
 
-    // Getters and Setters
 }
 

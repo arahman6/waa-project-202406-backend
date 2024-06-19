@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @Entity
@@ -23,7 +24,7 @@ public class Review {
     private Rating rating;
 
     private String comment;
-    private LocalDateTime reviewDate;
+    private Date reviewDate;
 
 }
 

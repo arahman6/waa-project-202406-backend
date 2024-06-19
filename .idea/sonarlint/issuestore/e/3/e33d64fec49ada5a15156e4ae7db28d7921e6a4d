@@ -1,0 +1,5 @@
+
+=
+java:S1948"'Make "roles" transient or serializable.(ÿÎÌ“
+
+java:S6204""zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ª™¨¹
