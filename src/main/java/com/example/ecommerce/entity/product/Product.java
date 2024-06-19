@@ -28,7 +28,7 @@ public class Product {
     private String imageUrl;
     private Integer stockQuantity;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonManagedReference
     private SubCategory subCategory;
 

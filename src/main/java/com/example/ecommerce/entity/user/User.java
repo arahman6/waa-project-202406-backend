@@ -30,7 +30,12 @@ public class User {
     private String firstName;
     private String lastName;
     private String phone;
-    private boolean enable;
+
+    @Column(nullable = false, columnDefinition = "boolean default false")
+    private Boolean enable;
+
+    @Column(nullable = false, columnDefinition = "boolean default false")
+    private Boolean hasRequestedForApproval;
 
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
     private Address address;

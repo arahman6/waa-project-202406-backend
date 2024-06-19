@@ -291,5 +291,15 @@ public class UserService {
         }
         return null;
     }
+
+    public User approveSeller(Integer id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            user.setHasRequestedForApproval(true);
+            return userRepository.save(user);
+        }
+        return null;
+    }
 }
 

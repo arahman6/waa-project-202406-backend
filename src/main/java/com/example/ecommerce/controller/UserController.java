@@ -97,6 +97,12 @@ public class UserController {
     //Seller Specific
     //todo: Add seller specific
 
+    @PutMapping("/{id}/approve-request")
+    //@PreAuthorize("hasRole('SELLER')")
+    public User approveSeller(@PathVariable Integer id) {
+        return userService.approveSeller(id);
+    }
+
 
     @PostMapping("/{id}/products")
     //@PreAuthorize("hasRole('SELLER')")

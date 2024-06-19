@@ -25,13 +25,5 @@ public class Item {
     private Integer quantity;
     private Double price;
 
-    @ManyToOne
-    @JsonBackReference
-    private Order order;
-
-    @ManyToOne
-    @JsonBackReference
-    private Cart cart;
-
 }
 

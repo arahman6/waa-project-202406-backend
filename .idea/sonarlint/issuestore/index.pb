@@ -997,3 +997,13 @@ Q.idea/sonarlint/securityhotspotstore/a/2/a2b1c7d3bbcc12fe699bb65d5a840e49716562
 Q.idea/sonarlint/securityhotspotstore/a/1/a18a68663a4f084bec57e419882779b50254c58d,d\c\dcc4b1bac9183be598b3d2e5a22fe7c7d4988cc0
 w
 G.idea/sonarlint/issuestore/a/1/a18a68663a4f084bec57e419882779b50254c58d,b\5\b5a3843f88fbe356a440998c5490826b2d098183
+s
+Csrc/main/java/com/example/ecommerce/controller/AdminController.java,0\2\020e44ffcef019ae3d9d8843ea9f6ec79db04701
+r
+Bsrc/main/java/com/example/ecommerce/controller/AuthController.java,4\3\431918bf65b30a3195b51a48014174840d9d1954
+v
+Fsrc/main/java/com/example/ecommerce/controller/CategoryController.java,d\0\d0c86ac78f7befc5d5f4fcdba84e42229ae90443
+m
+=src/main/java/com/example/ecommerce/service/AdminService.java,1\4\1477e1b97d850b043ef9bcfe350e64f994d8f3fc
+w
+Gsrc/main/java/com/example/ecommerce/repository/AdminUserRepository.java,3\6\366bf905c751d9115fcb74246abb3ea846df1daf

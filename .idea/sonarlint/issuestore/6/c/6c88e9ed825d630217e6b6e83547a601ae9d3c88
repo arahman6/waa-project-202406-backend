@@ -1,9 +1,23 @@
 
 š
-java:S2159Û"VRemove this call to "equals"; comparisons between unrelated types always return false.(§ÿŞù8íó­ğ‚2J$e77e1314-c195-4227-a8db-5b47c405a8c9
+java:S2159Û"VRemove this call to "equals"; comparisons between unrelated types always return false.(§ÿŞù8íó­ğ‚2J$f8631d26-4c25-4a84-8615-14fee09bc5aa
 š
-java:S2159å"VRemove this call to "equals"; comparisons between unrelated types always return false.(®ÇÈ˜8ğó­ğ‚2J$a55e1771-d554-40c6-aff5-a0fc8178edef
+java:S2159å"VRemove this call to "equals"; comparisons between unrelated types always return false.(®ÇÈ˜8ğó­ğ‚2J$68b5a05a-cd11-4427-9d89-3ed23f2f686c
 r
-java:S1172é")Remove this unused method parameter "id".(øşÍ‹şÿÿÿÿ8óó­ğ‚2J$64201804-6fce-41f4-affb-00a3bdd53d08
+java:S1172é")Remove this unused method parameter "id".(øşÍ‹şÿÿÿÿ8óó­ğ‚2J$04086e03-9d59-47c3-a608-6d458c93f7ae
 r
-java:S1172‚")Remove this unused method parameter "id".(Ù¼½÷ÿÿÿÿÿ8öó­ğ‚2J$d99dc607-182e-4cff-b8c9-461bfcadce52
+java:S1172‚")Remove this unused method parameter "id".(Ù¼½÷ÿÿÿÿÿ8öó­ğ‚2J$3b483498-674e-4a2b-8450-173c33697554
+q
+java:S1128"ORemove this unused import 'com.example.ecommerce.controller.ProductController'.(Æ¸ù†øÿÿÿÿ8”Ş‹ô‚2
+R
+java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8•Ş‹ô‚2
+V
+java:S1128"4Remove this unused import 'java.time.LocalDateTime'.(æÃ§ƒüÿÿÿÿ8–Ş‹ô‚2
+u
+java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8—Ş‹ô‚2
+w
+java:S1128"URemove this unused import 'org.springframework.security.access.prepost.PreAuthorize'.(ˆ†×ùÿÿÿÿ8˜Ş‹ô‚2
+U
+java:S1128"9Remove this unused import 'javax.swing.text.html.Option'.(¼Òì:8˜Ş‹ô‚2
+Z
+java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8™Ş‹ô‚2
