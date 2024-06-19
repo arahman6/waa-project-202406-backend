@@ -19,7 +19,7 @@ public class AdminService {
     private final ReviewRepository reviewRepository;
 
 
-    public User approveSeller(Integer sellerId) {
+    public User approveSeller(Long sellerId) {
         User user = userRepository.findById(sellerId).orElseThrow(() -> new RuntimeException("User not found"));
         user.setEnable(true);
         user.setHasRequestedForApproval(false);
@@ -29,7 +29,7 @@ public class AdminService {
         return userRepository.save(user);
     }
 
-    public User rejectSeller(Integer sellerId) {
+    public User rejectSeller(Long sellerId) {
         User user = userRepository.findById(sellerId).orElseThrow(() -> new RuntimeException("User not found"));
         user.setEnable(false);
         user.setHasRequestedForApproval(false);

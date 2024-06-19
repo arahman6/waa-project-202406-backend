@@ -3,6 +3,7 @@ package com.example.ecommerce.entity.product;
 import com.example.ecommerce.entity.category.SubCategory;
 import com.example.ecommerce.entity.order.Item;
 import com.example.ecommerce.entity.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -29,17 +30,15 @@ public class Product {
     private Integer stockQuantity;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonBackReference(value = "product-subCategory")
     private SubCategory subCategory;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference(value = "product-review")
     private List<Review> review;
 
     @ManyToOne
+    @JsonBackReference(value = "user-products")
     private User user;
 
-    public List<Review> getReviews() {
-        return null;
-    }
 }

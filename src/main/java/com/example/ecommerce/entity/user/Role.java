@@ -15,6 +15,6 @@ public class Role {
     private String role;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "user-roles")
     private User user;
 }

@@ -31,29 +31,31 @@ public class User {
     private String lastName;
     private String phone;
 
-    @Column(nullable = false, columnDefinition = "boolean default false")
+    @Column(nullable = true, columnDefinition = "boolean default false")
     private Boolean enable;
 
-    @Column(nullable = false, columnDefinition = "boolean default false")
+    @Column(nullable = true, columnDefinition = "boolean default false")
     private Boolean hasRequestedForApproval;
 
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "user-address")
     private Address address;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable
-    @JsonManagedReference
+    @JsonManagedReference(value = "user-roles")
     private List<Role> roles;
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference(value = "user-orders")
     private List<Order> orders;
 
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference(value = "user-cart")
     private Cart cart;
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "user-products")
     private List<Product> products;
 }
 

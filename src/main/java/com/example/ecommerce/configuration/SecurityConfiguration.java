@@ -52,7 +52,8 @@ public class SecurityConfiguration {
                         auth -> auth
                                 .requestMatchers("/api/v1/users/**").permitAll()
                                 .requestMatchers("api/v1/authenticate/**").permitAll()
-                                //.requestMatchers("/api/v1/users").hasAnyAuthority(roles)
+                                .requestMatchers("api/v1/products/**").permitAll()
+//                                .requestMatchers("/api/v1/users").hasAnyAuthority(roles)
                                 .anyRequest()
                                 .authenticated()
                 )

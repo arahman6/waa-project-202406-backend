@@ -16,12 +16,12 @@ public class AdminController {
 
 
     @PutMapping("/approve/{sellerId}")
-    public User approveSeller(@PathVariable Integer sellerId) {
+    public User approveSeller(@PathVariable Long sellerId) {
         return adminService.approveSeller(sellerId);
     }
 
     @PutMapping("/reject/{sellerId}")
-    public User rejectSeller(@PathVariable Integer sellerId) {
+    public User rejectSeller(@PathVariable Long sellerId) {
         return adminService.rejectSeller(sellerId);
     }
 

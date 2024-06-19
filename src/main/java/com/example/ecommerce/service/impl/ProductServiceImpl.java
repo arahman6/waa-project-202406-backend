@@ -33,7 +33,7 @@ public class ProductServiceImpl extends GenericServiceImpl<Product, ProductReque
     public List<Review> getProductReviews(Long id) {
         Product product = productRepository.findById(id).orElse(null);
         if (product != null) {
-            return product.getReviews();
+            return product.getReview();
         }
         return List.of();
     }

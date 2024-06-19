@@ -20,11 +20,11 @@ public class SubCategory {
     private String name;
 
     @ManyToOne
-    @JsonManagedReference
+    @JsonBackReference(value = "category-subCategory")
     private Category category;
 
     @OneToMany(mappedBy = "subCategory", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonManagedReference(value = "product-subCategory")
     private List<Product> products;
 
 }

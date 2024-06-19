@@ -18,7 +18,7 @@ public class Order {
     private Long id;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "user-orders")
     private User user;
 
     private LocalDateTime orderDate;

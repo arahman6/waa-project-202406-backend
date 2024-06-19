@@ -23,12 +23,11 @@ public class Cart {
     private Long id;
 
     @OneToOne
-    @JsonBackReference
+    @JsonBackReference(value = "user-cart")
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id")
-    @JsonManagedReference
     private List<Item> cartItems;
 
 }
