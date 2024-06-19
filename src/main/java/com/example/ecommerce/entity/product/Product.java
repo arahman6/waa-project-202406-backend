@@ -28,6 +28,7 @@ public class Product {
     private Double price;
     private String imageUrl;
     private Integer stockQuantity;
+    private boolean purchased;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value = "product-subCategory")
