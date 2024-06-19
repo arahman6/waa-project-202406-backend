@@ -14,6 +14,7 @@ import com.example.ecommerce.entity.dto.response.UserResponse;
 
 import com.example.ecommerce.entity.user.User;
 import com.example.ecommerce.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -34,6 +35,12 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
     public UserController(UserService userService){
         super(userService);
     }
+
+    @Override
+    public User create(@Valid UserRequest userRequest) {
+        return userService.add(userRequest);
+    }
+
 
     @GetMapping("/email/{emailId}")
     public User getUserById(@PathVariable String emailId) {
