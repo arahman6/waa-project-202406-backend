@@ -46,6 +46,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         auth -> auth
@@ -60,6 +61,7 @@ public class SecurityConfiguration {
                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Use stateless sessions
                 )
                 .httpBasic(withDefaults());
+
 
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 

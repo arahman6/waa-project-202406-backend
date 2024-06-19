@@ -1,35 +1,18 @@
 package com.example.ecommerce.service;
 
+import com.example.ecommerce.entity.dto.request.OrderRequest;
+import com.example.ecommerce.entity.dto.request.UserRequest;
+import com.example.ecommerce.entity.dto.response.OrderResponse;
+import com.example.ecommerce.entity.dto.response.UserResponse;
 import com.example.ecommerce.entity.order.Order;
+import com.example.ecommerce.entity.user.User;
 import com.example.ecommerce.repository.OrderRepository;
+import com.example.ecommerce.service.generic.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class OrderService {
-    @Autowired
-    private OrderRepository orderRepository;
+public interface OrderService extends GenericService<Order, OrderRequest, OrderResponse, Long> {
 
-    public List<Order> getAllOrders() {
-        return orderRepository.findAll();
-    }
-
-    public Order getOrderById(Long id) {
-        return orderRepository.findById(id).orElse(null);
-    }
-
-    public Order createOrder(Order order) {
-        return orderRepository.save(order);
-    }
-
-    public Order updateOrder(Long id, Order orderDetails) {
-        Order order = orderRepository.findById(id).orElse(null);
-        return orderRepository.save(order);
-    }
-
-    public void deleteOrder(Long id) {
-        orderRepository.deleteById(id);
-    }
 }

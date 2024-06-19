@@ -19,6 +19,5 @@ public class Category {
     @JsonBackReference
     private List<SubCategory> subCategories;
 
-    // Getters and Setters
 }
 
