@@ -5,6 +5,10 @@ import com.example.ecommerce.entity.order.Order;
 import com.example.ecommerce.entity.product.Product;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 
@@ -17,16 +21,30 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 @Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Username is mandatory")
     private String username;
+
+    @NotBlank(message = "Password is mandatory")
+//    @Size(min = 8, message = "Password must be at least 8 characters long")
+//    private String password;
+//    @Pattern(
+//        regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$",
+//        message = "Password must contain at least one digit, one lowercase letter, one uppercase letter, one special character, and no whitespace"
+//    )
     private String password;
+
+    @NotBlank(message = "Email is mandatory")
+    @Email(message = "Email should be valid")
+    @Column(nullable = false, unique = true)
     private String email;
+
     private String firstName;
     private String lastName;
     private String phone;
