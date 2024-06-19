@@ -1,5 +1,5 @@
 
-m
-java:S1611G"1Remove the parentheses around the "web" parameter(ºÑ„œJ$a9d55fe0-38d3-4379-ad89-1838f50eda0b
-¾
-java:S1128"{Remove this unused import 'org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity'.(Ô¦ø8ëÎİç‚2J$b8ede219-5156-4cbd-8b54-ea7a511a60f4
+t
+java:S1611J"1Remove the parentheses around the "web" parameter(ºÑ„œ8—§û„ƒ2J$f566fad6-5b57-410b-8be4-5b492ab4e9d1
+ˆ
+java:S1128"@Remove this unused import 'org.springframework.http.HttpMethod'.(Ê¨Ä¡øÿÿÿÿ8¥§û„ƒ2J$5593cb62-6672-4759-88d0-678264a44552
