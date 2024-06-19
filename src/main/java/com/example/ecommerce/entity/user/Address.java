@@ -1,5 +1,6 @@
 package com.example.ecommerce.entity.user;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,9 +17,9 @@ public class Address {
     private String postalCode;
     private String country;
 
-    @OneToOne(mappedBy = "address")
+    @OneToOne
+    @JsonBackReference(value = "user-address")
     private User user;
 
-    // Getters and Setters
 }
 

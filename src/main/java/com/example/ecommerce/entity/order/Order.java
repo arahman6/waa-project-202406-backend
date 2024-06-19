@@ -1,6 +1,8 @@
 package com.example.ecommerce.entity.order;
 
 import com.example.ecommerce.entity.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,6 +18,7 @@ public class Order {
     private Long id;
 
     @ManyToOne
+    @JsonBackReference(value = "user-orders")
     private User user;
 
     private LocalDateTime orderDate;
@@ -24,6 +27,7 @@ public class Order {
     private OrderStatus status;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
     private List<Item> orderItems;
 
     // Getters and Setters

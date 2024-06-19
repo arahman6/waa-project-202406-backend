@@ -1,13 +1,23 @@
 package com.example.ecommerce.entity.product;
 
 import com.example.ecommerce.entity.category.SubCategory;
+import com.example.ecommerce.entity.order.Item;
+import com.example.ecommerce.entity.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +29,16 @@ public class Product {
     private String imageUrl;
     private Integer stockQuantity;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonBackReference(value = "product-subCategory")
     private SubCategory subCategory;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "product-review")
     private List<Review> review;
+
+    @ManyToOne
+    @JsonBackReference(value = "user-products")
+    private User user;
+
 }
