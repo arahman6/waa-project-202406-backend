@@ -50,12 +50,12 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         auth -> auth
-                                .requestMatchers("/api/v1/users/**").permitAll()
-                                .requestMatchers("api/v1/authenticate/**").permitAll()
-                                .requestMatchers("api/v1/products/**").permitAll()
+//                                .requestMatchers("/api/v1/users/**").permitAll()
+//                                .requestMatchers("api/v1/authenticate/**").permitAll()
+//                                .requestMatchers("api/v1/products/**").permitAll()
 //                                .requestMatchers("/api/v1/users").hasAnyAuthority(roles)
-                                .anyRequest()
-                                .authenticated()
+                                .anyRequest().permitAll()
+                                //.authenticated()
                 )
                 .sessionManagement(
                         session -> session
