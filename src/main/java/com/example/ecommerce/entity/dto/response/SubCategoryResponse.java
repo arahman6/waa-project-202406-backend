@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 @Data
 public class SubCategoryResponse {
     private String name;
-    private Category category;
+    private CategoryResponse category;
 }

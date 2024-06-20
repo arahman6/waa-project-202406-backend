@@ -1,11 +1,14 @@
 package com.example.ecommerce.entity.dto.request;
 
 import com.example.ecommerce.entity.user.Address;
+import com.example.ecommerce.entity.user.Role;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,4 +25,5 @@ public class UserRequest {
     private String firstName;
     private String lastName;
     private Address address;
+    private List<Role> roles;
 }

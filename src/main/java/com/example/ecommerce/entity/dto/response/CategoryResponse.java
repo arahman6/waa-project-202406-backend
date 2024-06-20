@@ -12,5 +12,4 @@ import java.util.List;
 @Data
 public class CategoryResponse {
     private String name;
-    private List<SubCategory> subCategories;
 }
