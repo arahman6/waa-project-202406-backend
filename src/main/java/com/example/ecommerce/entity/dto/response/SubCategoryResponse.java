@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class SubCategoryResponse {
+    private Long id;
     private String name;
-    private CategoryResponse category;
 }
