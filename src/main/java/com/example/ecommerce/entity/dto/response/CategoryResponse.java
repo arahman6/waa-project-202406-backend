@@ -11,5 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class CategoryResponse {
+    private Long id;
     private String name;
+    private List<SubCategoryResponse> subCategories;
 }
