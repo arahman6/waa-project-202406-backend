@@ -11,6 +11,7 @@ import com.example.ecommerce.entity.user.User;
 import com.example.ecommerce.repository.*;
 import com.example.ecommerce.service.BuyerService;
 import com.example.ecommerce.util.ListMapper;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -70,6 +71,7 @@ public class BuyerServiceImpl implements BuyerService {
     }
 
     @Override
+    @Transactional
     public void makeOrder(Long buyId, List<Item> items) {
         User buyer = userRepository.findById(buyId).orElse(null);
         if(buyer != null){

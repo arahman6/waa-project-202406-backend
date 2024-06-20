@@ -22,7 +22,6 @@ public class Address {
     @OneToOne
     @JsonBackReference(value = "user-address")
     @ToString.Exclude
-    @JsonIgnore
     private User user;
 
 }
