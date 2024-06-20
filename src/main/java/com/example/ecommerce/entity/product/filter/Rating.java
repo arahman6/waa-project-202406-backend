@@ -1,9 +1,10 @@
-package com.example.ecommerce.entity.product;
+package com.example.ecommerce.entity.product.filter;
 
 import lombok.Getter;
 
 @Getter
-public enum Rating {
+public enum
+Rating {
     ONE(1),
     TWO(2),
     THREE(3),

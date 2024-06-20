@@ -1,10 +1,12 @@
 package com.example.ecommerce.entity.product;
 
 import com.example.ecommerce.entity.category.SubCategory;
-import com.example.ecommerce.entity.order.Item;
+import com.example.ecommerce.entity.product.filter.Brand;
+import com.example.ecommerce.entity.product.filter.Color;
+import com.example.ecommerce.entity.product.filter.Material;
+import com.example.ecommerce.entity.product.filter.Size;
 import com.example.ecommerce.entity.user.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -27,6 +29,18 @@ public class Product {
     private String imageUrl;
     private Integer stockQuantity;
     private boolean purchased;
+
+    @Enumerated(EnumType.STRING)
+    private Brand brand;
+
+    @Enumerated(EnumType.STRING)
+    private Color color;
+
+    @Enumerated(EnumType.STRING)
+    private Size size;
+
+    @Enumerated(EnumType.STRING)
+    private Material material;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value = "product-subCategory")
