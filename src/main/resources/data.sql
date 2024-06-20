@@ -4,16 +4,17 @@ SELECT 1;
 -- -- Inserting sample Users
 INSERT INTO users (enable, id, username, password, email, first_name, last_name)
 VALUES
-(true, 1, 'admin', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'admin@example.com', 'Admin', 'User'),
-(true, 2, 'buyer1', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'buyer1@example.com', 'Buyer', 'One'),
-(true, 3, 'buyer2', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'buyer2@example.com', 'Buyer', 'Two'),
-(true, 4, 'buyer3', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'buyer3@example.com', 'Buyer', 'Three'),
-(true, 5, 'seller1', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'seller1@example.com', 'Seller', 'One'),
-(true, 6, 'seller2', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'seller2@example.com', 'Seller', 'Two'),
-(true, 7, 'seller3', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'seller3@example.com', 'Seller', 'Three'),
-(true, 8, 'seller4', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'seller4@example.com', 'Seller', 'Four'),
-(true, 9, 'buyer4', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'buyer4@example.com', 'Buyer', 'Four'),
-(true,10, 'buyer5', '$2a$10$Dow1oEppW1MSKgV/q2xdLuS4n//U1z/O13h6.dX23OQv.zTO2F1pW', 'buyer5@example.com', 'Buyer', 'Five');
+(true, 1, 'admin', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'admin@example.com', 'Admin', 'User'),
+(true, 2, 'buyer1', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'buyer1@example.com', 'Buyer', 'One'),
+(true, 3, 'buyer2', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'buyer2@example.com', 'Buyer', 'Two'),
+(true, 4, 'buyer3', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'buyer3@example.com', 'Buyer', 'Three'),
+(true, 5, 'seller1', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'seller1@example.com', 'Seller', 'One'),
+(true, 6, 'seller2', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'seller2@example.com', 'Seller', 'Two'),
+(true, 7, 'seller3', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'seller3@example.com', 'Seller', 'Three'),
+(true, 8, 'seller4', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'seller4@example.com', 'Seller', 'Four'),
+(true, 9, 'buyer4', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'buyer4@example.com', 'Buyer', 'Four'),
+(true,10, 'buyer5', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'buyer5@example.com', 'Buyer', 'Five');
+
 
 INSERT INTO role (id, role) VALUES (1, 'ADMIN');
 INSERT INTO role (id, role) VALUES (2, 'BUYER');
