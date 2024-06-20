@@ -1,5 +1,6 @@
 package com.example.ecommerce.service;
 
+import com.example.ecommerce.entity.dto.response.OrderResponse;
 import com.example.ecommerce.entity.order.Cart;
 import com.example.ecommerce.entity.order.Item;
 import com.example.ecommerce.entity.order.Order;
@@ -13,7 +14,7 @@ public interface BuyerService {
     void makeOrder(Long buyId,List<Item> items);
     void cancelOrder(Long id);
     Cart getCart(Long id);
-    List<Order> getOrders(Long id);
+    List<OrderResponse> getOrders(Long id);
     void addReview(Long id, Long ProductId, Review review);
     void updateReview(Long id, Long reviewId, Review review);
     void deleteReview(Long id, Long reviewId);

@@ -1,5 +1,6 @@
 package com.example.ecommerce.controller;
 
+import com.example.ecommerce.entity.dto.response.OrderResponse;
 import com.example.ecommerce.entity.order.Cart;
 import com.example.ecommerce.entity.order.Item;
 import com.example.ecommerce.entity.order.Order;
@@ -42,7 +43,7 @@ public class BuyerController {
     }
 
     @GetMapping("/{id}/orders")
-    public List<Order> getOrders(@PathVariable Long id){
+    public List<OrderResponse> getOrders(@PathVariable Long id){
         return buyerService.getOrders(id);
     }
 

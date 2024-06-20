@@ -2,6 +2,7 @@ package com.example.ecommerce.controller;
 
 import com.example.ecommerce.entity.dto.request.OrderStatusRequest;
 import com.example.ecommerce.entity.dto.response.ProductResponse;
+import com.example.ecommerce.entity.dto.response.UserResponse;
 import com.example.ecommerce.entity.order.Order;
 import com.example.ecommerce.entity.product.Product;
 import com.example.ecommerce.service.SellerService;
@@ -45,6 +46,11 @@ public class SellerController {
     @PutMapping("/{id}/orders/{orderId}/updateStatus")
     public void updateOrderStatus(@PathVariable Long id, @PathVariable Long orderId, @RequestBody OrderStatusRequest orderStatus){
         sellerService.updateOrderStatus(id, orderId, orderStatus);
+    }
+
+    @PutMapping("/{id}/approve-request")
+    public UserResponse approveRequest(@PathVariable Long id){
+        return sellerService.requestApproval(id);
     }
 }
 

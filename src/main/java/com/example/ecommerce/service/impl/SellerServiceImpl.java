@@ -2,6 +2,7 @@ package com.example.ecommerce.service.impl;
 
 import com.example.ecommerce.entity.dto.request.OrderStatusRequest;
 import com.example.ecommerce.entity.dto.response.ProductResponse;
+import com.example.ecommerce.entity.dto.response.UserResponse;
 import com.example.ecommerce.entity.order.Item;
 import com.example.ecommerce.entity.order.Order;
 import com.example.ecommerce.entity.order.OrderStatus;
@@ -126,5 +127,16 @@ public class SellerServiceImpl implements SellerService {
 
         }
 
+    }
+
+    @Override
+    public UserResponse requestApproval(Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            user.setHasRequestedForApproval(true);
+            return modelMapper.map(userRepository.save(user), UserResponse.class);
+        }
+        return null;
     }
 }

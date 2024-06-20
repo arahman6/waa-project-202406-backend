@@ -1,5 +1,6 @@
 package com.example.ecommerce.service.impl;
 
+import com.example.ecommerce.entity.dto.response.OrderResponse;
 import com.example.ecommerce.entity.order.Cart;
 import com.example.ecommerce.entity.order.Item;
 import com.example.ecommerce.entity.order.Order;
@@ -9,6 +10,7 @@ import com.example.ecommerce.entity.product.Review;
 import com.example.ecommerce.entity.user.User;
 import com.example.ecommerce.repository.*;
 import com.example.ecommerce.service.BuyerService;
+import com.example.ecommerce.util.ListMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,9 @@ public class BuyerServiceImpl implements BuyerService {
     ProductRepository productRepository;
     @Autowired
     ReviewRepository reviewRepository;
+
+    @Autowired
+    ListMapper listMapper;
 
 
     @Override
@@ -113,11 +118,11 @@ public class BuyerServiceImpl implements BuyerService {
     }
 
     @Override
-    public List<Order> getOrders(Long id) {
+    public List<OrderResponse> getOrders(Long id) {
         User user = userRepository.findById(id).orElse(null);
         if(user!= null){
             System.out.println("yser order ::::"+user.getOrders());
-            return user.getOrders();
+            return (List<OrderResponse>) listMapper.mapList(user.getOrders(),new OrderResponse());
         }
         return List.of();
     }

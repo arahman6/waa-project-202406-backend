@@ -2,6 +2,7 @@ package com.example.ecommerce.service;
 
 import com.example.ecommerce.entity.dto.request.OrderStatusRequest;
 import com.example.ecommerce.entity.dto.response.ProductResponse;
+import com.example.ecommerce.entity.dto.response.UserResponse;
 import com.example.ecommerce.entity.order.Order;
 import com.example.ecommerce.entity.product.Product;
 
@@ -14,6 +15,7 @@ public interface SellerService {
     List<Order> getOrders(Long sellerId);
     void cancelOrder(Long sellerId, Long orderId);
     void updateOrderStatus(Long sellerId, Long orderId, OrderStatusRequest orderStatusRequest);
+    UserResponse requestApproval(Long id);
 
 
 }

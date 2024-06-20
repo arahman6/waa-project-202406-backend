@@ -54,17 +54,17 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
     //user specific
     // todo: Add User specific stuff
 
-    @PostMapping("/{id}/cart")
-    //@PreAuthorize("hasRole('USER')")
-    public Cart addToCart(@PathVariable Long id, @RequestBody List<Item> items) {
-        return userService.addToCart(id, items);
-    }
+//    @PostMapping("/{id}/cart")
+//    //@PreAuthorize("hasRole('USER')")
+//    public Cart addToCart(@PathVariable Long id, @RequestBody List<Item> items) {
+//        return userService.addToCart(id, items);
+//    }
 
-    @GetMapping("/{id}/cart")
-   // @PreAuthorize("hasRole('USER')")
-    public Cart getCart(@PathVariable Long id) {
-        return userService.getCart(id);
-    }
+//    @GetMapping("/{id}/cart")
+//   // @PreAuthorize("hasRole('USER')")
+//    public Cart getCart(@PathVariable Long id) {
+//        return userService.getCart(id);
+//    }
 
     @DeleteMapping("/{id}/cart")
     //@PreAuthorize("hasRole('USER')")
@@ -72,29 +72,29 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
         userService.clearCart(id,ids);
     }
 
-    @PostMapping("/{id}/orders")
-    //@PreAuthorize("hasRole('USER')")
-    public Order createOrder(@PathVariable Long id,@RequestBody List<Item>items) {
-        return userService.createOrder(id,items);
-    }
+//    @PostMapping("/{id}/orders")
+//    //@PreAuthorize("hasRole('USER')")
+//    public Order createOrder(@PathVariable Long id,@RequestBody List<Item>items) {
+//        return userService.createOrder(id,items);
+//    }
 
-    @GetMapping("/{id}/orders")
-    //@PreAuthorize("hasRole('USER')")
-    public List<Order> getOrders(@PathVariable Long id) {
-        return userService.getOrders(id);
-    }
+//    @GetMapping("/{id}/orders")
+//    //@PreAuthorize("hasRole('USER')")
+//    public List<Order> getOrders(@PathVariable Long id) {
+//        return userService.getOrders(id);
+//    }
 
-    @PutMapping("/{id}/orders/{orderId}")
-    //@PreAuthorize("hasRole('USER')")
-    public Order cancelOrder(@PathVariable Long id, @PathVariable Long orderId, @RequestBody @Valid OrderStatusRequest orderStatus) {
-        return userService.cancelOrder(id,orderId,orderStatus);
-    }
+//    @PutMapping("/{id}/orders/{orderId}")
+//    //@PreAuthorize("hasRole('USER')")
+//    public Order cancelOrder(@PathVariable Long id, @PathVariable Long orderId, @RequestBody @Valid OrderStatusRequest orderStatus) {
+//        return userService.cancelOrder(id,orderId,orderStatus);
+//    }
 
-    @PostMapping("/{id}/products/{productId}/reviews")
-    //@PreAuthorize("hasRole('USER')")
-    public Review addReview(@PathVariable Long id, @PathVariable Long productId, @RequestBody String review) {
-        return userService.addReview(id,productId,review);
-    }
+//    @PostMapping("/{id}/products/{productId}/reviews")
+//    //@PreAuthorize("hasRole('USER')")
+//    public Review addReview(@PathVariable Long id, @PathVariable Long productId, @RequestBody String review) {
+//        return userService.addReview(id,productId,review);
+//    }
 
 
     //Seller Specific
@@ -107,44 +107,44 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
     }
 
 
-    @PostMapping("/{id}/products")
-    //@PreAuthorize("hasRole('SELLER')")
-    public List<ProductResponse> addProducts(@PathVariable Long id, @RequestBody List<Product>products) {
-        return userService.addProducts(id,products);
-    }
+//    @PostMapping("/{id}/products")
+//    //@PreAuthorize("hasRole('SELLER')")
+//    public List<ProductResponse> addProducts(@PathVariable Long id, @RequestBody List<Product>products) {
+//        return userService.addProducts(id,products);
+//    }
 
-    @PutMapping("{id}/products/{productId}")
-    //@PreAuthorize("hasRole('SELLER')")
-    public ProductResponse updateProduct(@PathVariable Long id, @PathVariable Long productId,@RequestBody Product productDetails) {
-        return userService.updateProduct(id,productId,productDetails);
-    }
+//    @PutMapping("{id}/products/{productId}")
+//    //@PreAuthorize("hasRole('SELLER')")
+//    public ProductResponse updateProduct(@PathVariable Long id, @PathVariable Long productId,@RequestBody Product productDetails) {
+//        return userService.updateProduct(id,productId,productDetails);
+//    }
 
-    @GetMapping("/{id}/products")
-    //@PreAuthorize("hasRole('SELLER')")
-    public List<ProductResponse> getProducts(@PathVariable Long id) {
-        return userService.getProducts(id);
-    }
+//    @GetMapping("/{id}/products")
+//    //@PreAuthorize("hasRole('SELLER')")
+//    public List<ProductResponse> getProducts(@PathVariable Long id) {
+//        return userService.getProducts(id);
+//    }
 
     //Maintaining orders
     //getAllOrders
-    @GetMapping("/{id}/ordered")
-    //@PreAuthorize("hasRole('SELLER')")
-    public List<Order> getOrdersBySeller(@PathVariable Long id) {
-        return userService.getOrdersBySeller(id);
-    }
+//    @GetMapping("/{id}/ordered")
+//    //@PreAuthorize("hasRole('SELLER')")
+//    public List<Order> getOrdersBySeller(@PathVariable Long id) {
+//        return userService.getOrdersBySeller(id);
+//    }
 
 
-    @GetMapping("/{id}/ordered-products")
-    //@PreAuthorize("hasRole('SELLER')")
-    public List<ProductResponse> getOrderedProducts(@PathVariable Long id) {
-        return userService.getOrderedProducts(id);
-    }
+//    @GetMapping("/{id}/ordered-products")
+//    //@PreAuthorize("hasRole('SELLER')")
+//    public List<ProductResponse> getOrderedProducts(@PathVariable Long id) {
+//        return userService.getOrderedProducts(id);
+//    }
 
 
-    @PutMapping("/{id}/ordered-products/{orderId}")
-    //@PreAuthorize("hasRole('SELLER')")
-    public Order updateOrderStatus(@PathVariable Long id, @PathVariable Long orderId, @RequestBody OrderStatusRequest orderStatus) {
-        return userService.updateOrderStatus(id,orderId,orderStatus);
-    }
+//    @PutMapping("/{id}/ordered-products/{orderId}")
+//    //@PreAuthorize("hasRole('SELLER')")
+//    public Order updateOrderStatus(@PathVariable Long id, @PathVariable Long orderId, @RequestBody OrderStatusRequest orderStatus) {
+//        return userService.updateOrderStatus(id,orderId,orderStatus);
+//    }
 
 }
