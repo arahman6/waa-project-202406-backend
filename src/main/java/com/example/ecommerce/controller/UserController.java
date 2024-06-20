@@ -6,6 +6,7 @@ import com.example.ecommerce.entity.order.Item;
 import com.example.ecommerce.entity.order.Order;
 import com.example.ecommerce.entity.order.OrderStatus;
 import com.example.ecommerce.entity.product.Product;
+import com.example.ecommerce.entity.product.Review;
 import com.example.ecommerce.entity.user.Role;
 
 import com.example.ecommerce.controller.generic.GenericControllerImpl;
@@ -35,9 +36,9 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
         super(userService);
     }
 
-    @GetMapping("/email/{emailId}")
-    public User getUserById(@PathVariable String emailId) {
-        return userService.getUserByEmail(emailId);
+    @GetMapping("/email/{email}")
+    public User getUserById(@PathVariable String email) {
+        return userService.getUserByEmail(email);
     }
 
 
@@ -82,7 +83,7 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
 
     @PostMapping("/{id}/products/{productId}/reviews")
     //@PreAuthorize("hasRole('USER')")
-    public Product addReview(@PathVariable Long id, @PathVariable Long productId, @RequestBody String review) {
+    public Review addReview(@PathVariable Long id, @PathVariable Long productId, @RequestBody String review) {
         return userService.addReview(id,productId,review);
     }
 
@@ -99,8 +100,8 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
 
     @PostMapping("/{id}/products")
     //@PreAuthorize("hasRole('SELLER')")
-    public void addProducts(@PathVariable Long id,@RequestBody List<Product>products) {
-        userService.addProducts(id,products);
+    public List<Product> addProducts(@PathVariable Long id,@RequestBody List<Product>products) {
+        return userService.addProducts(id,products);
     }
 
     @PutMapping("{id}/products/{productId}")

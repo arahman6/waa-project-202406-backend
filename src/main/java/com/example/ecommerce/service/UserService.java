@@ -41,7 +41,7 @@ public interface UserService extends GenericService<User, UserRequest, UserRespo
     Cart getCart(Long id);
     public Order createOrder(Long id, List<Item> items);
     void clearCart(Long userId, List<Long> itemIds);
-    void addProducts(Long id, List<Product> products);
+    List<Product> addProducts(Long id, List<Product> products);
     Product updateProduct(Long userId,Long productId, Product productDetails);
     List<Product> getProducts(Long id);
     List<Order> getOrders(Long id);
@@ -49,6 +49,6 @@ public interface UserService extends GenericService<User, UserRequest, UserRespo
     List<Order> getOrdersBySeller(Long id);
     Order updateOrderStatus(Long id, Long orderId, OrderStatus orderStatus);
     Order cancelOrder(Long id, Long orderId, OrderStatus orderStatus);
-    Product addReview(Long id, Long productId, String review);
+    Review addReview(Long id, Long productId, String review);
     User approveSeller(Long id);
 }

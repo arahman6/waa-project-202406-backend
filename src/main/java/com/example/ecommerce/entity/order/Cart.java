@@ -2,12 +2,10 @@ package com.example.ecommerce.entity.order;
 
 import com.example.ecommerce.entity.user.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.jmx.export.annotation.ManagedNotifications;
 
 import java.util.List;
@@ -24,6 +22,7 @@ public class Cart {
 
     @OneToOne
     @JsonBackReference(value = "user-cart")
+    @ToString.Exclude
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL)

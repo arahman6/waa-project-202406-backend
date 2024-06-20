@@ -12,6 +12,7 @@ import com.example.ecommerce.entity.user.Role;
 import com.example.ecommerce.entity.user.User;
 import com.example.ecommerce.repository.OrderRepository;
 import com.example.ecommerce.repository.ProductRepository;
+import com.example.ecommerce.repository.ReviewRepository;
 import com.example.ecommerce.repository.UserRepository;
 import com.example.ecommerce.service.UserService;
 import com.example.ecommerce.service.generic.GenericServiceImpl;
@@ -35,6 +36,9 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
     private ProductRepository productRepository;
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private ReviewRepository reviewRepository;
+
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, ListMapper listMapper){
@@ -113,7 +117,8 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
             orders.add(order);
             user.setOrders(orders);
             userRepository.save(user);
-            return order;
+
+            return orderRepository.save(order);
         }
         return null;
     }
@@ -133,7 +138,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
     }
 
     @Override
-    public void addProducts(Long id, List<Product> products) {
+    public List<Product> addProducts(Long id, List<Product> products) {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
@@ -145,7 +150,9 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
             user.setProducts(userProducts);
 
             userRepository.save(user);
+            return products;
         }
+        return List.of();
     }
 
     @Override
@@ -259,7 +266,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
     }
 
     @Override
-    public Product addReview(Long id, Long productId, String review) {
+    public Review addReview(Long id, Long productId, String review) {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
@@ -276,7 +283,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
                         reviews.add(review1);
                         product.setReview(reviews);
                         productRepository.save(product);
-                        return product;
+                        return reviewRepository.save(review1);
                     }
                 }
             }
