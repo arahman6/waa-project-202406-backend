@@ -26,4 +26,5 @@ public class ProductResponse {
     private Double price;
     private String imageUrl;
     private Integer stockQuantity;
+    private SubCategoryResponse subCategory;
 }
