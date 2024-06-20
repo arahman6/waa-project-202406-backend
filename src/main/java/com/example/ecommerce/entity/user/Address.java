@@ -1,8 +1,10 @@
 package com.example.ecommerce.entity.user;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -19,6 +21,7 @@ public class Address {
 
     @OneToOne
     @JsonBackReference(value = "user-address")
+    @ToString.Exclude
     private User user;
 
 }

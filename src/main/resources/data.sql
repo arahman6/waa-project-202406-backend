@@ -1,22 +1,30 @@
 SELECT 1;
 
 
+--
+-- INSERT INTO users ("enable", id, email, first_name, last_name, "password", phone, username)
+-- VALUES
+--     (true, 1, 'admin@example.com', '', '', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', '', 'admin'),
+--     (true, 2, 'buyer@example.com', '', '', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', '', 'buyer'),
+--     (true, 3, 'seller@example.com', '', '', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', '', 'seller');--123
+--
+-- INSERT INTO role (id, role)
+-- VALUES (1, 'ADMIN');
+-- INSERT INTO role (id, role)
+-- VALUES (2, 'BUYER');
+-- INSERT INTO role (id, role)
+-- VALUES (3, 'SELLER');
+-- --
+-- --
+-- --
+-- INSERT INTO users_roles (user_id, roles_id)
+-- VALUES (1, 1);
+-- INSERT INTO users_roles (user_id, roles_id)
+-- VALUES (2, 2);
+-- INSERT INTO users_roles (user_id, roles_id)
+-- VALUES (3, 3);
+--
 
-INSERT INTO users ("enable", id, email, first_name, last_name, "password", phone, username)
-VALUES
-    (true, 10, 'admin@example.com', '', '', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', '', 'admin'),
-    (true, 20, 'buyer@example.com', '', '', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', '', 'buyer'),
-    (true, 30, 'seller@example.com', '', '', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', '', 'seller');--123
-
-INSERT INTO role (id, role)
-VALUES (1, 'ADMIN');
-INSERT INTO role (id, role)
-VALUES (2, 'BUYER');
-INSERT INTO role (id, role)
-VALUES (3, 'SELLER');
---
---
---
 INSERT INTO users_roles (user_id, roles_id)
 VALUES (10, 1);
 INSERT INTO users_roles (user_id, roles_id)
@@ -58,4 +66,3 @@ INSERT INTO cart (id, user_id) VALUES
                                    (1, 10),
                                    (2, 20),
                                    (3, 30);
-

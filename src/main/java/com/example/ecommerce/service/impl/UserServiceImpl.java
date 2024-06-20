@@ -1,6 +1,8 @@
 package com.example.ecommerce.service.impl;
 
+import com.example.ecommerce.entity.dto.request.OrderStatusRequest;
 import com.example.ecommerce.entity.dto.request.UserRequest;
+import com.example.ecommerce.entity.dto.response.ProductResponse;
 import com.example.ecommerce.entity.dto.response.UserResponse;
 import com.example.ecommerce.entity.order.Cart;
 import com.example.ecommerce.entity.order.Item;
@@ -12,6 +14,7 @@ import com.example.ecommerce.entity.user.Role;
 import com.example.ecommerce.entity.user.User;
 import com.example.ecommerce.repository.OrderRepository;
 import com.example.ecommerce.repository.ProductRepository;
+import com.example.ecommerce.repository.ReviewRepository;
 import com.example.ecommerce.repository.UserRepository;
 import com.example.ecommerce.service.UserService;
 import com.example.ecommerce.service.generic.GenericServiceImpl;
@@ -22,6 +25,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+
+import static com.example.ecommerce.entity.order.OrderStatus.*;
 
 @Service
 public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserResponse, Long> implements UserService {
@@ -39,6 +44,9 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
     private ProductRepository productRepository;
     @Autowired
     private OrderRepository orderRepository;
+    @Autowired
+    private ReviewRepository reviewRepository;
+
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, ListMapper listMapper){
@@ -123,7 +131,8 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
             orders.add(order);
             user.setOrders(orders);
             userRepository.save(user);
-            return order;
+
+            return orderRepository.save(order);
         }
         return null;
     }
@@ -143,7 +152,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
     }
 
     @Override
-    public void addProducts(Long id, List<Product> products) {
+    public List<ProductResponse> addProducts(Long id, List<Product> products) {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
@@ -155,11 +164,15 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
             user.setProducts(userProducts);
 
             userRepository.save(user);
+            return products.stream()
+                    .map(product -> modelMapper.map(product, ProductResponse.class))
+                    .toList();
         }
+        return List.of();
     }
 
     @Override
-    public Product updateProduct(Long userId, Long productId, Product productDetails) {
+    public ProductResponse updateProduct(Long userId, Long productId, Product productDetails) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
@@ -178,7 +191,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
                                 .user(user)
                                 .build();
                         productRepository.save(product);
-                        return product;
+                        return modelMapper.map(product, ProductResponse.class);
                     }
                 }
             }
@@ -188,11 +201,13 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
     }
 
     @Override
-    public List<Product> getProducts(Long id) {
+    public List<ProductResponse> getProducts(Long id) {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            return user.getProducts();
+            return user.getProducts()
+                    .stream()
+                    .map(product -> modelMapper.map(product, ProductResponse.class)).toList() ;
         }
         return List.of();
     }
@@ -208,7 +223,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
     }
 
     @Override
-    public List<Product> getOrderedProducts(Long userId) {
+    public List<ProductResponse> getOrderedProducts(Long userId) {
         return orderRepository.findAll()
                 .stream()
                 .filter(order->order.getStatus().equals(OrderStatus.PROCESSING))
@@ -216,6 +231,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
                 .flatMap(Collection::stream)
                 .map(Item::getProduct)
                 .filter(product -> product.getUser().getId().equals(userId))
+                .map(product -> modelMapper.map(product, ProductResponse.class))
                 .toList();
     }
 
@@ -231,14 +247,24 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
     }
 
     @Override
-    public Order updateOrderStatus(Long id, Long orderId, OrderStatus orderStatus) {
+    public Order updateOrderStatus(Long id, Long orderId, OrderStatusRequest orderStatus) {
         Optional<Order> orderOptional = orderRepository.findById(orderId);
         if (orderOptional.isPresent()) {
-
             Order order = orderOptional.get();
-            order.setStatus(orderStatus);
+            switch (orderStatus.getStatus()) {
+                case "SHIPPED":
+                    order.setStatus(SHIPPED);
+                    break;
+                case "DELIVERED":
+                    order.setStatus(DELIVERED);
+                    break;
+                case "CANCELLED":
+                    order.setStatus(CANCELLED);
+                    break;
 
-            if(orderStatus==OrderStatus.SHIPPED){
+            }
+
+            if(order.getStatus()== SHIPPED){
                 List<Item> items=order.getOrderItems()
                         .stream()
                         .map(item-> {
@@ -256,12 +282,12 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
     }
 
     @Override
-    public Order cancelOrder(Long id, Long orderId, OrderStatus orderStatus) {
+    public Order cancelOrder(Long id, Long orderId, OrderStatusRequest orderStatus) {
         Optional<Order> orderOptional = orderRepository.findById(orderId);
         if (orderOptional.isPresent()) {
             Order order = orderOptional.get();
-            if(order.getStatus().equals(OrderStatus.PROCESSING)){
-                order.setStatus(orderStatus);
+            if(order.getStatus()!=null && order.getStatus().equals(OrderStatus.PROCESSING)){
+                order.setStatus(OrderStatus.CANCELLED);
             }
             return orderRepository.save(order);
         }
@@ -269,7 +295,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
     }
 
     @Override
-    public Product addReview(Long id, Long productId, String review) {
+    public Review addReview(Long id, Long productId, String review) {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
@@ -286,7 +312,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
                         reviews.add(review1);
                         product.setReview(reviews);
                         productRepository.save(product);
-                        return product;
+                        return review1;
                     }
                 }
             }

@@ -4,12 +4,10 @@ import com.example.ecommerce.entity.category.SubCategory;
 import com.example.ecommerce.entity.order.Item;
 import com.example.ecommerce.entity.user.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -32,14 +30,17 @@ public class Product {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value = "product-subCategory")
+    @ToString.Exclude
     private SubCategory subCategory;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     @JsonManagedReference(value = "product-review")
+    @ToString.Exclude
     private List<Review> review;
 
     @ManyToOne
     @JsonBackReference(value = "user-products")
+    @ToString.Exclude
     private User user;
 
     public void addReview(Review review1){review.add(review1);}
