@@ -23,6 +23,8 @@ public class Order {
 
     private LocalDateTime orderDate;
     private LocalDateTime deliveryDate;
+    private double price;
+
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
@@ -30,6 +32,9 @@ public class Order {
     @JoinColumn(name = "order_id")
     private List<Item> orderItems;
 
-    // Getters and Setters
+
+    public Long getSellerId(){
+        return orderItems.getFirst().getProduct().getUser().getId();
+    }
 }
 

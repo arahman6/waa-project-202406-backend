@@ -24,8 +24,7 @@ public class Item {
 
     private Integer quantity;
     private Double price;
-    @Enumerated(EnumType.STRING)
-    private OrderStatus status;
+
 
 }
 

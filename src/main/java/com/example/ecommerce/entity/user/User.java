@@ -57,5 +57,15 @@ public class User {
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     @JsonManagedReference(value = "user-products")
     private List<Product> products;
+
+    public void addProduct(Product product){
+        products.add(product);
+    }
+
+    public void removeProduct(Product product){
+        products.remove(product);
+    }
+
+    public void addOrder(Order order){orders.add(order);}
 }
 
