@@ -1,6 +1,5 @@
 SELECT 1;
 
-
 -- -- Inserting sample Users
 INSERT INTO users (enable, id, username, password, email, first_name, last_name)
 VALUES
