@@ -41,12 +41,12 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
 
     @Override
     public User create(@Valid UserRequest userRequest) {
-        return userService.add(userRequest);
+        return userService.create(userRequest);
     }
 
 
     @GetMapping("/email/{emailId}")
-    public User getUserById(@PathVariable String emailId) {
+    public UserResponse getUserById(@PathVariable String emailId) {
         return userService.getUserByEmail(emailId);
     }
 
@@ -102,7 +102,7 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
 
     @PutMapping("/{id}/approve-request")
     //@PreAuthorize("hasRole('SELLER')")
-    public User approveSeller(@PathVariable Long id) {
+    public UserResponse approveSeller(@PathVariable Long id) {
         return userService.approveSeller(id);
     }
 
