@@ -7,12 +7,14 @@ import com.example.ecommerce.entity.order.Order;
 import com.example.ecommerce.entity.product.Review;
 import com.example.ecommerce.service.BuyerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/buyer")
+//@PreAuthorize("hasRole('BUYER')")
 public class BuyerController {
     @Autowired
     BuyerService buyerService;
