@@ -11,27 +11,21 @@ VALUES
 (true, 5, 'seller1', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'seller1@example.com', 'Seller', 'One'),
 (true, 6, 'seller2', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'seller2@example.com', 'Seller', 'Two'),
 (true, 7, 'seller3', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'seller3@example.com', 'Seller', 'Three'),
-(true, 8, 'seller4', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'seller4@example.com', 'Seller', 'Four'),
+(false, 8, 'seller4', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'seller4@example.com', 'Seller', 'Four'),
 (true, 9, 'buyer4', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'buyer4@example.com', 'Buyer', 'Four'),
 (true,10, 'buyer5', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'buyer5@example.com', 'Buyer', 'Five');
 
 
-INSERT INTO role (id, role) VALUES (1, 'ADMIN');
-INSERT INTO role (id, role) VALUES (2, 'BUYER');
-INSERT INTO role (id, role) VALUES (3, 'SELLER');
-
-
-INSERT INTO users_roles (user_id, roles_id) VALUES (1, 1);
-INSERT INTO users_roles (user_id, roles_id) VALUES (2, 2);
-INSERT INTO users_roles (user_id, roles_id) VALUES (3, 2);
-INSERT INTO users_roles (user_id, roles_id) VALUES (4, 2);
-INSERT INTO users_roles (user_id, roles_id) VALUES (5, 3);
-INSERT INTO users_roles (user_id, roles_id) VALUES (6, 3);
-INSERT INTO users_roles (user_id, roles_id) VALUES (7, 3);
-INSERT INTO users_roles (user_id, roles_id) VALUES (8, 3);
-INSERT INTO users_roles (user_id, roles_id) VALUES (9, 2);
-INSERT INTO users_roles (user_id, roles_id) VALUES (10, 2);
-
+INSERT INTO role (id, user_id, role) VALUES (1, 1, 'ADMIN');
+INSERT INTO role (id, user_id, role) VALUES (2, 2, 'BUYER');
+INSERT INTO role (id, user_id, role) VALUES (3, 3, 'BUYER');
+INSERT INTO role (id, user_id, role) VALUES (4, 4, 'BUYER');
+INSERT INTO role (id, user_id, role) VALUES (5, 5, 'SELLER');
+INSERT INTO role (id, user_id, role) VALUES (6, 6, 'SELLER');
+INSERT INTO role (id, user_id, role) VALUES (7, 7, 'SELLER');
+INSERT INTO role (id, user_id, role) VALUES (8, 8, 'SELLER');
+INSERT INTO role (id, user_id, role) VALUES (9, 9, 'BUYER');
+INSERT INTO role (id, user_id, role) VALUES (10, 10, 'BUYER');
 
 -- Inserting sample Addresses
 INSERT INTO address (id, street, city, state, postal_code, country, user_id)

@@ -2,6 +2,7 @@ package com.example.ecommerce.service.impl;
 
 import com.example.ecommerce.entity.dto.request.ProductRequest;
 import com.example.ecommerce.entity.dto.response.ProductResponse;
+import com.example.ecommerce.entity.dto.response.ReviewResponse;
 import com.example.ecommerce.entity.product.Product;
 import com.example.ecommerce.entity.product.Review;
 import com.example.ecommerce.repository.ProductRepository;
@@ -30,10 +31,20 @@ public class ProductServiceImpl extends GenericServiceImpl<Product, ProductReque
     }
 
     @Override
-    public List<Review> getProductReviews(Long id) {
+    public List<ProductResponse> findAll(){
+        return productRepository.findAll()
+                .stream()
+                .filter(product -> product.getUser().getEnable())
+                .map(product -> modelMapper.map(product,ProductResponse.class))
+                .toList();
+    }
+
+    @Override
+    public List<ReviewResponse> getProductReviews(Long id) {
         Product product = productRepository.findById(id).orElse(null);
         if (product != null) {
-            return product.getReview();
+            return product.getReview().stream().map(review -> modelMapper.map(review,ReviewResponse.class))
+                    .toList();
         }
         return List.of();
     }
