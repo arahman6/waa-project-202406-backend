@@ -27,7 +27,7 @@ public class Order {
     private LocalDateTime orderDate;
     private LocalDateTime deliveryDate;
     @Enumerated(EnumType.STRING)
-    @ToString.Exclude
+    //@ToString.Exclude
     private OrderStatus status;
 
     @OneToMany(cascade = CascadeType.ALL)

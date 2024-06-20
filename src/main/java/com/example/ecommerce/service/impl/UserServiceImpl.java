@@ -283,7 +283,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
                         reviews.add(review1);
                         product.setReview(reviews);
                         productRepository.save(product);
-                        return reviewRepository.save(review1);
+                        return review1;
                     }
                 }
             }

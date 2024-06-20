@@ -78,7 +78,7 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
     @PutMapping("/{id}/orders/{orderId}")
     //@PreAuthorize("hasRole('USER')")
     public Order cancelOrder(@PathVariable Long id, @PathVariable Long orderId, @RequestBody OrderStatus orderStatus) {
-        return userService.cancelOrder(id,orderId,orderStatus);
+        return userService.cancelOrder(id,orderId,OrderStatus.CANCELLED);
     }
 
     @PostMapping("/{id}/products/{productId}/reviews")
