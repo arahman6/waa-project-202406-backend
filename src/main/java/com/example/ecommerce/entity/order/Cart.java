@@ -29,5 +29,13 @@ public class Cart {
     @JoinColumn(name = "cart_id")
     private List<Item> cartItems;
 
+    public void addItem(Item item){
+        cartItems.add(item);
+    }
+
+    public void removeItem(Item item){
+        cartItems.remove(item);
+    }
+
 }
 

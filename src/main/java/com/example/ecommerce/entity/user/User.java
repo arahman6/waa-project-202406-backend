@@ -81,5 +81,15 @@ public class User {
     @JsonManagedReference(value = "user-products")
     @ToString.Exclude
     private List<Product> products;
+
+    public void addProduct(Product product){
+        products.add(product);
+    }
+
+    public void removeProduct(Product product){
+        products.remove(product);
+    }
+
+    public void addOrder(Order order){orders.add(order);}
 }
 

@@ -26,6 +26,8 @@ public class Order {
 
     private LocalDateTime orderDate;
     private LocalDateTime deliveryDate;
+    private double price;
+
     @Enumerated(EnumType.STRING)
     //@ToString.Exclude
     private OrderStatus status;
@@ -35,6 +37,9 @@ public class Order {
     @ToString.Exclude
     private List<Item> orderItems;
 
-    // Getters and Setters
+
+    public Long getSellerId(){
+        return orderItems.getFirst().getProduct().getUser().getId();
+    }
 }
 

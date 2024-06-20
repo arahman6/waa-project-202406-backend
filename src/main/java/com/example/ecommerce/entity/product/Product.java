@@ -57,4 +57,7 @@ public class Product {
     @ToString.Exclude
     private User user;
 
+    public void addReview(Review review1){review.add(review1);}
+    public void removeReview(Review review1){review.remove(review1);}
+
 }
