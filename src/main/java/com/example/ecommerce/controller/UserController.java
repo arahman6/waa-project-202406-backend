@@ -39,9 +39,15 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
         super(userService);
     }
 
-    @GetMapping("/email/{email}")
-    public User getUserById(@PathVariable String email) {
-        return userService.getUserByEmail(email);
+    @Override
+    public User create(@Valid UserRequest userRequest) {
+        return userService.add(userRequest);
+    }
+
+
+    @GetMapping("/email/{emailId}")
+    public User getUserById(@PathVariable String emailId) {
+
     }
 
 

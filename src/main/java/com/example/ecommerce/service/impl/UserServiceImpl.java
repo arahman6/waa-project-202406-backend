@@ -21,6 +21,7 @@ import com.example.ecommerce.service.generic.GenericServiceImpl;
 import com.example.ecommerce.util.ListMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -37,6 +38,9 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
     ListMapper listMapper;
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private ProductRepository productRepository;
     @Autowired
     private OrderRepository orderRepository;
@@ -47,6 +51,12 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
     @Autowired
     public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, ListMapper listMapper){
         super(userRepository, modelMapper, listMapper);
+    }
+
+    @Override
+    public User add(UserRequest userRequest) {
+        userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+        return super.add(userRequest);
     }
 
     @Override
