@@ -53,19 +53,19 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
         super(userRepository, modelMapper, listMapper);
     }
 
-    @Override
-    public User add(UserRequest userRequest) {
-        userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
-        return super.add(userRequest);
+    public User create(UserRequest userRequest) {
+        User user = modelMapper.map(userRequest, User.class);
+        user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+        return userRepository.save(user);
     }
 
     @Override
-    public User getUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public UserResponse getUserByEmail(String email) {
+        return modelMapper.map(userRepository.findByEmail(email),UserResponse.class);
     }
 
     @Override
-    public User addRoles(Long id, Role role) {
+    public UserResponse addRoles(Long id, Role role) {
         User user = userRepository.findById(id).orElse(null);
         if (user != null) {
             List<Role> roles = user.getRoles();
@@ -74,7 +74,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
             }
             roles.add(role);
             user.setRoles(roles);
-            return userRepository.save(user);
+            return modelMapper.map(userRepository.save(user), UserResponse.class);
         }
         return null;
     }
@@ -321,12 +321,12 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
     }
 
     @Override
-    public User approveSeller(Long id) {
+    public UserResponse approveSeller(Long id) {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             user.setHasRequestedForApproval(true);
-            return userRepository.save(user);
+            return modelMapper.map(userRepository.save(user), UserResponse.class);
         }
         return null;
     }
