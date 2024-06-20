@@ -116,9 +116,10 @@ public class BuyerServiceImpl implements BuyerService {
     public List<Order> getOrders(Long id) {
         User user = userRepository.findById(id).orElse(null);
         if(user!= null){
+            System.out.println("yser order ::::"+user.getOrders());
             return user.getOrders();
         }
-        return null;
+        return List.of();
     }
 
     @Override
