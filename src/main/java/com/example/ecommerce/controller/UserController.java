@@ -1,6 +1,8 @@
 package com.example.ecommerce.controller;
 
 
+import com.example.ecommerce.entity.dto.request.OrderStatusRequest;
+import com.example.ecommerce.entity.dto.response.ProductResponse;
 import com.example.ecommerce.entity.order.Cart;
 import com.example.ecommerce.entity.order.Item;
 import com.example.ecommerce.entity.order.Order;
@@ -15,6 +17,7 @@ import com.example.ecommerce.entity.dto.response.UserResponse;
 
 import com.example.ecommerce.entity.user.User;
 import com.example.ecommerce.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -77,8 +80,8 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
 
     @PutMapping("/{id}/orders/{orderId}")
     //@PreAuthorize("hasRole('USER')")
-    public Order cancelOrder(@PathVariable Long id, @PathVariable Long orderId, @RequestBody OrderStatus orderStatus) {
-        return userService.cancelOrder(id,orderId,OrderStatus.CANCELLED);
+    public Order cancelOrder(@PathVariable Long id, @PathVariable Long orderId, @RequestBody @Valid OrderStatusRequest orderStatus) {
+        return userService.cancelOrder(id,orderId,orderStatus);
     }
 
     @PostMapping("/{id}/products/{productId}/reviews")
@@ -100,19 +103,19 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
 
     @PostMapping("/{id}/products")
     //@PreAuthorize("hasRole('SELLER')")
-    public List<Product> addProducts(@PathVariable Long id,@RequestBody List<Product>products) {
+    public List<ProductResponse> addProducts(@PathVariable Long id, @RequestBody List<Product>products) {
         return userService.addProducts(id,products);
     }
 
     @PutMapping("{id}/products/{productId}")
     //@PreAuthorize("hasRole('SELLER')")
-    public Product updateProduct(@PathVariable Long id, @PathVariable Long productId,@RequestBody Product productDetails) {
+    public ProductResponse updateProduct(@PathVariable Long id, @PathVariable Long productId,@RequestBody Product productDetails) {
         return userService.updateProduct(id,productId,productDetails);
     }
 
     @GetMapping("/{id}/products")
     //@PreAuthorize("hasRole('SELLER')")
-    public List<Product> getProducts(@PathVariable Long id) {
+    public List<ProductResponse> getProducts(@PathVariable Long id) {
         return userService.getProducts(id);
     }
 
@@ -127,21 +130,15 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
 
     @GetMapping("/{id}/ordered-products")
     //@PreAuthorize("hasRole('SELLER')")
-    public List<Product> getOrderedProducts(@PathVariable Long id) {
+    public List<ProductResponse> getOrderedProducts(@PathVariable Long id) {
         return userService.getOrderedProducts(id);
     }
 
 
     @PutMapping("/{id}/ordered-products/{orderId}")
     //@PreAuthorize("hasRole('SELLER')")
-    public Order updateOrderStatus(@PathVariable Long id, @PathVariable Long orderId, @RequestBody OrderStatus orderStatus) {
+    public Order updateOrderStatus(@PathVariable Long id, @PathVariable Long orderId, @RequestBody OrderStatusRequest orderStatus) {
         return userService.updateOrderStatus(id,orderId,orderStatus);
     }
-
-
-
-
-
-
 
 }
