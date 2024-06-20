@@ -1,11 +1,14 @@
 package com.example.ecommerce.controller;
 
 
+import com.example.ecommerce.entity.dto.request.OrderStatusRequest;
+import com.example.ecommerce.entity.dto.response.ProductResponse;
 import com.example.ecommerce.entity.order.Cart;
 import com.example.ecommerce.entity.order.Item;
 import com.example.ecommerce.entity.order.Order;
 import com.example.ecommerce.entity.order.OrderStatus;
 import com.example.ecommerce.entity.product.Product;
+import com.example.ecommerce.entity.product.Review;
 import com.example.ecommerce.entity.user.Role;
 
 import com.example.ecommerce.controller.generic.GenericControllerImpl;
@@ -44,7 +47,7 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
 
     @GetMapping("/email/{emailId}")
     public User getUserById(@PathVariable String emailId) {
-        return userService.getUserByEmail(emailId);
+
     }
 
 
@@ -83,13 +86,13 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
 
     @PutMapping("/{id}/orders/{orderId}")
     //@PreAuthorize("hasRole('USER')")
-    public Order cancelOrder(@PathVariable Long id, @PathVariable Long orderId, @RequestBody OrderStatus orderStatus) {
+    public Order cancelOrder(@PathVariable Long id, @PathVariable Long orderId, @RequestBody @Valid OrderStatusRequest orderStatus) {
         return userService.cancelOrder(id,orderId,orderStatus);
     }
 
     @PostMapping("/{id}/products/{productId}/reviews")
     //@PreAuthorize("hasRole('USER')")
-    public Product addReview(@PathVariable Long id, @PathVariable Long productId, @RequestBody String review) {
+    public Review addReview(@PathVariable Long id, @PathVariable Long productId, @RequestBody String review) {
         return userService.addReview(id,productId,review);
     }
 
@@ -106,19 +109,19 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
 
     @PostMapping("/{id}/products")
     //@PreAuthorize("hasRole('SELLER')")
-    public void addProducts(@PathVariable Long id,@RequestBody List<Product>products) {
-        userService.addProducts(id,products);
+    public List<ProductResponse> addProducts(@PathVariable Long id, @RequestBody List<Product>products) {
+        return userService.addProducts(id,products);
     }
 
     @PutMapping("{id}/products/{productId}")
     //@PreAuthorize("hasRole('SELLER')")
-    public Product updateProduct(@PathVariable Long id, @PathVariable Long productId,@RequestBody Product productDetails) {
+    public ProductResponse updateProduct(@PathVariable Long id, @PathVariable Long productId,@RequestBody Product productDetails) {
         return userService.updateProduct(id,productId,productDetails);
     }
 
     @GetMapping("/{id}/products")
     //@PreAuthorize("hasRole('SELLER')")
-    public List<Product> getProducts(@PathVariable Long id) {
+    public List<ProductResponse> getProducts(@PathVariable Long id) {
         return userService.getProducts(id);
     }
 
@@ -133,21 +136,15 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
 
     @GetMapping("/{id}/ordered-products")
     //@PreAuthorize("hasRole('SELLER')")
-    public List<Product> getOrderedProducts(@PathVariable Long id) {
+    public List<ProductResponse> getOrderedProducts(@PathVariable Long id) {
         return userService.getOrderedProducts(id);
     }
 
 
     @PutMapping("/{id}/ordered-products/{orderId}")
     //@PreAuthorize("hasRole('SELLER')")
-    public Order updateOrderStatus(@PathVariable Long id, @PathVariable Long orderId, @RequestBody OrderStatus orderStatus) {
+    public Order updateOrderStatus(@PathVariable Long id, @PathVariable Long orderId, @RequestBody OrderStatusRequest orderStatus) {
         return userService.updateOrderStatus(id,orderId,orderStatus);
     }
-
-
-
-
-
-
 
 }
