@@ -1,5 +1,6 @@
 package com.example.ecommerce.entity.dto.response;
 
+import com.example.ecommerce.entity.product.filter.Rating;
 import com.example.ecommerce.entity.user.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,4 +14,5 @@ public class ReviewResponse {
     private UserResponse user;
     private String comment;
     private Date reviewDate;
+    private Rating rating;
 }
