@@ -2,6 +2,7 @@ package com.example.ecommerce.service;
 
 import com.example.ecommerce.entity.dto.request.ProductRequest;
 import com.example.ecommerce.entity.dto.response.ProductResponse;
+import com.example.ecommerce.entity.dto.response.ReviewResponse;
 import com.example.ecommerce.entity.product.Product;
 import com.example.ecommerce.entity.product.Review;
 
@@ -27,7 +28,7 @@ public interface ProductService extends GenericService<Product, ProductRequest, 
 //        return null;
 //    }
 
-    List<Review> getProductReviews(Long id);
+    List<ReviewResponse> getProductReviews(Long id);
 
 
 }
