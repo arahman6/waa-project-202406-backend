@@ -10,11 +10,13 @@ import com.example.ecommerce.entity.product.Review;
 import com.example.ecommerce.entity.user.User;
 import com.example.ecommerce.repository.*;
 import com.example.ecommerce.service.BuyerService;
+import com.example.ecommerce.service.EmailService;
 import com.example.ecommerce.util.ListMapper;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -32,6 +34,9 @@ public class BuyerServiceImpl implements BuyerService {
     ProductRepository productRepository;
     @Autowired
     ReviewRepository reviewRepository;
+
+    @Autowired
+    private EmailService emailService;
 
     @Autowired
     ListMapper listMapper;
@@ -95,9 +100,30 @@ public class BuyerServiceImpl implements BuyerService {
                 order.setPrice(orderPrice);
                 Order savedOrder= orderRepository.save(order);
                 buyer.addOrder(savedOrder);
+
+                // After saving the order, send the email
+                String to = buyer.getEmail(); // Assuming order has a user with an email
+                String subject = "Order Confirmation - " + savedOrder.getId();
+                String htmlBody = "<h1>Order Confirmation</h1>" +
+                        "<p>Dear " + buyer.getFirstName() + ",</p>" +
+                        "<p>Thank you for your order. Your order ID is " + savedOrder.getId() + ".</p>" +
+                        "<p>We will notify you once your order is shipped.</p>" +
+                        "<p>Best regards,<br>Your Company</p>";
+
+                try {
+                    emailService.sendHtmlMessage(to, subject, htmlBody);
+                } catch (IOException e) {
+                    e.printStackTrace(); // Handle the exception properly
+                }
+
+
+
             }
             userRepository.save(buyer);
             cartRepository.save(cart);
+
+
+
         }
     }
 
