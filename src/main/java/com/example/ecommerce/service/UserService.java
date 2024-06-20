@@ -37,8 +37,8 @@ import java.util.List;
 //    }
 
 public interface UserService extends GenericService<User, UserRequest, UserResponse, Long> {
-    User getUserByEmail(String email);
-    User addRoles(Long id, Role role);
+    UserResponse getUserByEmail(String email);
+    UserResponse addRoles(Long id, Role role);
     Cart addToCart(Long id, List<Item> items);
     Cart getCart(Long id);
     public Order createOrder(Long id, List<Item> items);
@@ -52,5 +52,6 @@ public interface UserService extends GenericService<User, UserRequest, UserRespo
     Order updateOrderStatus(Long id, Long orderId, OrderStatusRequest orderStatus);
     Order cancelOrder(Long id, Long orderId, OrderStatusRequest orderStatus);
     Review addReview(Long id, Long productId, String review);
-    User approveSeller(Long id);
+    UserResponse approveSeller(Long id);
+    User create(UserRequest userRequest);
 }

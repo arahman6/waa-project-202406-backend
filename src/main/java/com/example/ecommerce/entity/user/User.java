@@ -62,8 +62,7 @@ public class User {
     @ToString.Exclude
     private Address address;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference(value = "user-roles")
     @ToString.Exclude
     private List<Role> roles;

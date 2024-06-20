@@ -19,5 +19,6 @@ public class Role {
     @ManyToOne
     @JsonBackReference(value = "user-roles")
     @ToString.Exclude
+    @JsonIgnore
     private User user;
 }
