@@ -1,13 +1,6 @@
 SELECT 1;
 
 
-
--- INSERT INTO users ("enable", id, email, first_name, last_name, "password", phone, username)
--- VALUES
--- (true, 10, 'admin@example.com', '', '', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', '', 'admin'),
--- (true, 20, 'buyer@example.com', '', '', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', '', 'buyer'),
--- (true, 30, 'seller@example.com', '', '', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', '', 'seller');--123
-
 -- -- Inserting sample Users
 INSERT INTO users (enable, id, username, password, email, first_name, last_name)
 VALUES
@@ -21,11 +14,7 @@ VALUES
 (false, 8, 'seller4', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'seller4@example.com', 'Seller', 'Four'),
 (true, 9, 'buyer4', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'buyer4@example.com', 'Buyer', 'Four'),
 (true,10, 'buyer5', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'buyer5@example.com', 'Buyer', 'Five');
---
--- INSERT INTO role (id, role) VALUES (1, 'ADMIN');
--- INSERT INTO role (id, role) VALUES (2, 'BUYER');
--- INSERT INTO role (id, role) VALUES (3, 'SELLER');
---
+
 
 INSERT INTO role (id, user_id, role) VALUES (1, 1, 'ADMIN');
 INSERT INTO role (id, user_id, role) VALUES (2, 2, 'BUYER');
@@ -37,7 +26,6 @@ INSERT INTO role (id, user_id, role) VALUES (7, 7, 'SELLER');
 INSERT INTO role (id, user_id, role) VALUES (8, 8, 'SELLER');
 INSERT INTO role (id, user_id, role) VALUES (9, 9, 'BUYER');
 INSERT INTO role (id, user_id, role) VALUES (10, 10, 'BUYER');
-
 
 -- Inserting sample Addresses
 INSERT INTO address (id, street, city, state, postal_code, country, user_id)
