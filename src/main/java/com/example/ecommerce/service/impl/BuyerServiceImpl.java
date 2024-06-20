@@ -12,10 +12,7 @@ import com.example.ecommerce.service.BuyerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,6 +39,13 @@ public class BuyerServiceImpl implements BuyerService {
         User buyer = userRepository.findById(buyId).orElse(null);
         if(buyer != null){
             Cart cart = buyer.getCart();
+            if(cart == null){
+                cart = new Cart();
+                cart.setUser(buyer);
+                cart.setCartItems(new ArrayList<>());
+                buyer.setCart(cart);
+                userRepository.save(buyer);
+            }
             Item savedItem = itemRepository.save(item);
             cart.addItem(savedItem);
             cartRepository.save(cart);
@@ -66,7 +70,7 @@ public class BuyerServiceImpl implements BuyerService {
         if(buyer != null){
             Map<Long, List<Item>> itemsBySeller = items.stream()
                     .collect(Collectors.groupingBy(item ->item.getProduct().getUser().getId()));
-
+            Cart cart = buyer.getCart();
             for (Map.Entry<Long, List<Item>> entry : itemsBySeller.entrySet()) {
                 Long sellerId = entry.getKey();
                 List<Item> sellerItems = entry.getValue();
@@ -78,6 +82,7 @@ public class BuyerServiceImpl implements BuyerService {
 
                 double orderPrice =0;
                 for (Item item : sellerItems) {
+                    cart.removeItem(item);
                     orderPrice+= item.getPrice();
                 }
                 order.setPrice(orderPrice);
@@ -85,6 +90,7 @@ public class BuyerServiceImpl implements BuyerService {
                 buyer.addOrder(savedOrder);
             }
             userRepository.save(buyer);
+            cartRepository.save(cart);
         }
     }
 
