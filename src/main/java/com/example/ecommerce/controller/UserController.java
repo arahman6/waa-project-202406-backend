@@ -47,7 +47,7 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
 
     @GetMapping("/email/{emailId}")
     public User getUserById(@PathVariable String emailId) {
-
+        return userService.getUserByEmail(emailId);
     }
 
 
