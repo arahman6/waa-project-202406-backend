@@ -106,45 +106,4 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
         return userService.approveSeller(id);
     }
 
-
-//    @PostMapping("/{id}/products")
-//    //@PreAuthorize("hasRole('SELLER')")
-//    public List<ProductResponse> addProducts(@PathVariable Long id, @RequestBody List<Product>products) {
-//        return userService.addProducts(id,products);
-//    }
-
-//    @PutMapping("{id}/products/{productId}")
-//    //@PreAuthorize("hasRole('SELLER')")
-//    public ProductResponse updateProduct(@PathVariable Long id, @PathVariable Long productId,@RequestBody Product productDetails) {
-//        return userService.updateProduct(id,productId,productDetails);
-//    }
-
-//    @GetMapping("/{id}/products")
-//    //@PreAuthorize("hasRole('SELLER')")
-//    public List<ProductResponse> getProducts(@PathVariable Long id) {
-//        return userService.getProducts(id);
-//    }
-
-    //Maintaining orders
-    //getAllOrders
-//    @GetMapping("/{id}/ordered")
-//    //@PreAuthorize("hasRole('SELLER')")
-//    public List<Order> getOrdersBySeller(@PathVariable Long id) {
-//        return userService.getOrdersBySeller(id);
-//    }
-
-
-//    @GetMapping("/{id}/ordered-products")
-//    //@PreAuthorize("hasRole('SELLER')")
-//    public List<ProductResponse> getOrderedProducts(@PathVariable Long id) {
-//        return userService.getOrderedProducts(id);
-//    }
-
-
-//    @PutMapping("/{id}/ordered-products/{orderId}")
-//    //@PreAuthorize("hasRole('SELLER')")
-//    public Order updateOrderStatus(@PathVariable Long id, @PathVariable Long orderId, @RequestBody OrderStatusRequest orderStatus) {
-//        return userService.updateOrderStatus(id,orderId,orderStatus);
-//    }
-
 }
