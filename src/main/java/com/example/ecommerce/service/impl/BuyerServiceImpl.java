@@ -115,23 +115,18 @@ public class BuyerServiceImpl implements BuyerService {
                 Order savedOrder= orderRepository.save(order);
                 buyer.addOrder(savedOrder);
 
-                // After saving the order, send the email
                 String to = buyer.getEmail(); // Assuming order has a user with an email
                 String subject = "Order Confirmation - " + savedOrder.getId();
                 String htmlBody = "<h1>Order Confirmation</h1>" +
-                        "<p>Dear " + buyer.getFirstName() + ",</p>" +
+                        "<p>Dear Buyer,</p>" +
                         "<p>Thank you for your order. Your order ID is " + savedOrder.getId() + ".</p>" +
                         "<p>We will notify you once your order is shipped.</p>" +
                         "<p>Best regards,<br>Your Company</p>";
-
                 try {
                     emailService.sendHtmlMessage(to, subject, htmlBody);
                 } catch (IOException e) {
-                    e.printStackTrace(); // Handle the exception properly
+                    e.printStackTrace(); // Handle the exception
                 }
-
-
-
             }
             userRepository.save(buyer);
             cartRepository.save(cart);
