@@ -109,6 +109,10 @@ public class BuyerServiceImpl implements BuyerService {
                     if (managedItem != null) {
                         orderItems.add(managedItem);
                     }
+                    if(managedItem.getProduct().isPurchased()== false){
+                        managedItem.getProduct().setPurchased(true);
+                        productRepository.save(managedItem.getProduct());
+                    }
                 }
                 order.setPrice(orderPrice);
                 order.setOrderItems(orderItems);
