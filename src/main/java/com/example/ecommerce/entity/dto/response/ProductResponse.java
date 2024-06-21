@@ -1,6 +1,10 @@
 package com.example.ecommerce.entity.dto.response;
 
 
+import com.example.ecommerce.entity.product.filter.Brand;
+import com.example.ecommerce.entity.product.filter.Color;
+import com.example.ecommerce.entity.product.filter.Material;
+import com.example.ecommerce.entity.product.filter.Size;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,6 +32,11 @@ public class ProductResponse {
     private Double price;
     private String imageUrl;
     private Integer stockQuantity;
+    private Brand brand;
+    private Color color;
+    private Size size;
+    private Material material;
     private SubCategoryResponse subCategory;
     private List<ReviewResponse> review;
+
 }
