@@ -12,10 +12,7 @@ import com.example.ecommerce.entity.product.Product;
 import com.example.ecommerce.entity.product.Review;
 import com.example.ecommerce.entity.user.Role;
 import com.example.ecommerce.entity.user.User;
-import com.example.ecommerce.repository.OrderRepository;
-import com.example.ecommerce.repository.ProductRepository;
-import com.example.ecommerce.repository.ReviewRepository;
-import com.example.ecommerce.repository.UserRepository;
+import com.example.ecommerce.repository.*;
 import com.example.ecommerce.service.UserService;
 import com.example.ecommerce.service.generic.GenericServiceImpl;
 import com.example.ecommerce.util.ListMapper;
@@ -46,6 +43,8 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
     private OrderRepository orderRepository;
     @Autowired
     private ReviewRepository reviewRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
 
     @Autowired
@@ -56,7 +55,18 @@ public class UserServiceImpl extends GenericServiceImpl<User, UserRequest, UserR
     public User create(UserRequest userRequest) {
         User user = modelMapper.map(userRequest, User.class);
         user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
-        return userRepository.save(user);
+        if(user.getRoles().getFirst().getRole().equals("BUYER") ){
+            user.setEnable(true);
+            user.setHasRequestedForApproval(false);
+        }
+        else{
+            user.setEnable(false);
+            user.setHasRequestedForApproval(false);
+        }
+        User savedUser = userRepository.save(user);
+        savedUser.getRoles().getFirst().setUser(savedUser);
+        roleRepository.save(savedUser.getRoles().getFirst());
+        return savedUser;
     }
 
     @Override

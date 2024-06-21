@@ -97,13 +97,13 @@ public class UserController extends GenericControllerImpl<User, UserRequest, Use
 //    }
 
 
-    //Seller Specific
-    //todo: Add seller specific
-
-    @PutMapping("/{id}/approve-request")
-    //@PreAuthorize("hasRole('SELLER')")
-    public UserResponse approveSeller(@PathVariable Long id) {
-        return userService.approveSeller(id);
-    }
+//    //Seller Specific
+//    //todo: Add seller specific
+//
+//    @PutMapping("/{id}/approve-request")
+//    //@PreAuthorize("hasRole('SELLER')")
+//    public UserResponse approveSeller(@PathVariable Long id) {
+//        return userService.approveSeller(id);
+//    }
 
 }

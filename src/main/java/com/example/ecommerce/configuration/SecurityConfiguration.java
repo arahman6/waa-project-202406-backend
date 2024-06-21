@@ -5,6 +5,7 @@ import com.example.ecommerce.filter.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -31,6 +32,7 @@ public class SecurityConfiguration {
     private final JwtFilter jwtFilter;
 
     String[] roles = {"ADMIN", "BUYER", "SELLER"};
+    String[] admin = {"ADMIN"};
 
 
     @Bean
@@ -50,10 +52,12 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         auth -> auth
+//                                .requestMatchers(HttpMethod.PUT,"/api/v1/users/**").hasAnyRole(roles)
 //                                .requestMatchers("/api/v1/users/**").permitAll()
 //                                .requestMatchers("api/v1/authenticate/**").permitAll()
-//                                .requestMatchers("api/v1/products/**").permitAll()
-//                                .requestMatchers("/api/v1/users").hasAnyAuthority(roles)
+//                                .requestMatchers("api/v1/admin/**").hasAnyAuthority(admin)
+//                                .requestMatchers("/api/v1/seller/**").hasRole("SELLER")
+//                                .requestMatchers("/api/v1/buyer/**").hasRole("BUYER")
                                 .anyRequest().permitAll()
                                 //.authenticated()
                 )
