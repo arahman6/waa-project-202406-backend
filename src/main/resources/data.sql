@@ -126,22 +126,22 @@ VALUES
 
 
 -- -- Inserting sample Items
-INSERT INTO item (id, cart_id, product_id, order_id, quantity)
+INSERT INTO item (id, cart_id, product_id, order_id, quantity, price)
 VALUES
-    (1, null, 1, 1, 1),
-    (2, null, 2, 2, 2),
-    (3, null, 3, 3, 1),
-    (4, null, 4, 4, 1),
-    (5, null, 5, 5, 1),
-    (6, null, 6, 6, 1),
-    (7, null, 7, 7, 3),
-    (8, null, 8, 8, 2),
-    (9, null, 9, 9, 1),
-    (10, null, 10, 10, 2),
-    (11, 1, 1, null, 2),
-    (12, 2, 2, null, 2),
-    (13, 3, 3, null, 2),
-    (14, 4, 4, null, 2);
+    (1, null, 1, 1, 1, 20),
+    (2, null, 2, 2, 2, 20),
+    (3, null, 3, 3, 1, 20),
+    (4, null, 4, 4, 1, 20),
+    (5, null, 5, 5, 1, 40),
+    (6, null, 6, 6, 1, 20),
+    (7, null, 7, 7, 3, 20),
+    (8, null, 8, 8, 2, 20),
+    (9, null, 9, 9, 1, 30),
+    (10, null, 10, 10, 2, 20),
+    (11, 1, 1, null, 2, 20),
+    (12, 2, 2, null, 2, 20),
+    (13, 3, 3, null, 2, 20),
+    (14, 4, 4, null, 2, 20);
 --
 -- -- Inserting sample Payments
 INSERT INTO payment (id, order_id, payment_method, payment_date, amount)
