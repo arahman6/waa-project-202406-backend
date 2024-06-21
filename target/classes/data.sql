@@ -85,6 +85,21 @@ VALUES
     (9, false, 7, 'Levis Jeans', 'Comfortable jeans', 39.99, 'levis.jpg', 60, 7),
     (10, false, 8, 'Nike Running Shoes', 'Lightweight running shoes', 59.99, 'nike.jpg', 40, 8);
 
+-- Inserting sample data into the product table with constraints
+-- INSERT INTO public.product (price, purchased, stock_quantity, id, sub_category_id, user_id, brand, color, description, image_url, material, "name", "size")
+-- VALUES
+--     (799.99, false, 50, 1000, 1, 5, 'APPLE', 'BLACK', 'Latest Apple iPhone', 'iphone12.jpg', 'PLASTIC', 'iPhone 12', NULL),
+--     (699.99, false, 45, 1001, 1, 5, 'SAMSUNG', 'WHITE', 'Latest Samsung phone', 'galaxys21.jpg', 'PLASTIC', 'Samsung Galaxy S21', NULL),
+--     (999.99, false, 30, 1002, 2, 5, 'DELL', 'BLACK', 'High performance laptop', 'dellxps13.jpg', 'PLASTIC', 'Dell XPS 13', NULL),
+--     (1299.99, false, 25, 1003, 2, 6, 'APPLE', 'WHITE', 'Apple laptop', 'macbookpro.jpg', 'PLASTIC', 'MacBook Pro', NULL),
+--     (499.99, false, 20, 1004, 3, 6, 'LG', 'WHITE', 'Energy efficient refrigerator', 'whirlpool.jpg', 'PLASTIC', 'Whirlpool Refrigerator', NULL),
+--     (399.99, false, 15, 1005, 4, 6, 'LG', 'WHITE', 'Top load washing machine', 'lg.jpg', 'PLASTIC', 'LG Washing Machine', NULL),
+--     (10.99, false, 100, 1006, 5, 6, 'PENGUIN', 'BLUE', 'Classic novel by F. Scott Fitzgerald', 'gatsby.jpg', 'PAPER', 'The Great Gatsby', NULL),
+--     (15.99, false, 80, 1007, 6, 7, 'HARPER', 'WHITE', 'A Brief History of Humankind by Yuval Noah Harari', 'sapiens.jpg', 'PAPER', 'Sapiens', NULL),
+--     (39.99, false, 60, 1008, 7, 7, 'LEVIS', 'BLUE', 'Comfortable jeans', 'levis.jpg', 'DENIM', 'Levis Jeans', 'M'),
+--     (59.99, false, 40, 1009, 8, 8, 'NIKE', 'BLACK', 'Lightweight running shoes', 'nike.jpg', 'PLASTIC', 'Nike Running Shoes', '10');
+
+
 
 -- Inserting sample Orders
 INSERT INTO orders (id, user_id, order_date, delivery_date, status, price)
