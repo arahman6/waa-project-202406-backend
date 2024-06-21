@@ -71,19 +71,18 @@ VALUES
     (10, 'Dolls', 5);
 --
 -- -- Inserting sample Products
-
-INSERT INTO product (id, purchased, user_id, name, description, price, image_url, stock_quantity, sub_category_id)
+INSERT INTO product (id, purchased, user_id, brand,name, description, price, image_url, stock_quantity, sub_category_id)
 VALUES
-    (1, false, 5, 'iPhone 12', 'Latest Apple iPhone', 799.99, 'iphone12.jpg', 50, 1),
-    (2, false, 5, 'Samsung Galaxy S21', 'Latest Samsung phone', 699.99, 'galaxys21.jpg', 45, 1),
-    (3, false, 5, 'Dell XPS 13', 'High performance laptop', 999.99, 'dellxps13.jpg', 30, 2),
-    (4, false, 6, 'MacBook Pro', 'Apple laptop', 1299.99, 'macbookpro.jpg', 25, 2),
-    (5, false, 6, 'Whirlpool Refrigerator', 'Energy efficient refrigerator', 499.99, 'whirlpool.jpg', 20, 3),
-    (6, false, 6, 'LG Washing Machine', 'Top load washing machine', 399.99, 'lg.jpg', 15, 4),
-    (7, false, 6, 'The Great Gatsby', 'Classic novel by F. Scott Fitzgerald', 10.99, 'gatsby.jpg', 100, 5),
-    (8, false, 7, 'Sapiens', 'A Brief History of Humankind by Yuval Noah Harari', 15.99, 'sapiens.jpg', 80, 6),
-    (9, false, 7, 'Levis Jeans', 'Comfortable jeans', 39.99, 'levis.jpg', 60, 7),
-    (10, false, 8, 'Nike Running Shoes', 'Lightweight running shoes', 59.99, 'nike.jpg', 40, 8);
+    (1, false, 5, 'APPLE', 'iPhone 12', 'Latest Apple iPhone', 799.99, 'iphone12.jpg', 50, 1),
+    (2, false, 5, 'SAMSUNG', 'Samsung Galaxy S21', 'Latest Samsung phone', 699.99, 'galaxys21.jpg', 45, 1),
+    (3, false, 5, 'DELL', 'Dell XPS 13', 'High performance laptop', 999.99, 'dellxps13.jpg', 30, 2),
+    (4, false, 6, 'APPLE', 'MacBook Pro', 'Apple laptop', 1299.99, 'macbookpro.jpg', 25, 2),
+    (5, false, 6, 'LG', 'Whirlpool Refrigerator', 'Energy efficient refrigerator', 499.99, 'whirlpool.jpg', 20, 3),
+    (6, false, 6, 'LG', 'LG Washing Machine', 'Top load washing machine', 399.99, 'lg.jpg', 15, 4),
+    (7, false, 6, 'LG', 'The Great Gatsby', 'Classic novel by F. Scott Fitzgerald', 10.99, 'gatsby.jpg', 100, 5),
+    (8, false, 7, 'LG', 'Sapiens', 'A Brief History of Humankind by Yuval Noah Harari', 15.99, 'sapiens.jpg', 80, 6),
+    (9, false, 7, 'LG', 'Levis Jeans', 'Comfortable jeans', 39.99, 'levis.jpg', 60, 7),
+    (10, false, 8, 'LG', 'Nike Running Shoes', 'Lightweight running shoes', 59.99, 'nike.jpg', 40, 8);
 
 -- Inserting sample data into the product table with constraints
 -- INSERT INTO public.product (price, purchased, stock_quantity, id, sub_category_id, user_id, brand, color, description, image_url, material, "name", "size")
@@ -126,22 +125,22 @@ VALUES
 
 
 -- -- Inserting sample Items
-INSERT INTO item (id, cart_id, product_id, order_id, quantity)
+INSERT INTO item (id, cart_id, product_id, order_id, quantity, price)
 VALUES
-    (1, null, 1, 1, 1),
-    (2, null, 2, 2, 2),
-    (3, null, 3, 3, 1),
-    (4, null, 4, 4, 1),
-    (5, null, 5, 5, 1),
-    (6, null, 6, 6, 1),
-    (7, null, 7, 7, 3),
-    (8, null, 8, 8, 2),
-    (9, null, 9, 9, 1),
-    (10, null, 10, 10, 2),
-    (11, 1, 1, null, 2),
-    (12, 2, 2, null, 2),
-    (13, 3, 3, null, 2),
-    (14, 4, 4, null, 2);
+    (1, null, 1, 1, 1, 20),
+    (2, null, 2, 2, 2, 20),
+    (3, null, 3, 3, 1, 20),
+    (4, null, 4, 4, 1, 20),
+    (5, null, 5, 5, 1, 40),
+    (6, null, 6, 6, 1, 20),
+    (7, null, 7, 7, 3, 20),
+    (8, null, 8, 8, 2, 20),
+    (9, null, 9, 9, 1, 30),
+    (10, null, 10, 10, 2, 20),
+    (11, 1, 1, null, 2, 20),
+    (12, 2, 2, null, 2, 20),
+    (13, 3, 3, null, 2, 20),
+    (14, 4, 4, null, 2, 20);
 --
 -- -- Inserting sample Payments
 INSERT INTO payment (id, order_id, payment_method, payment_date, amount)
