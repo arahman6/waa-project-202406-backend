@@ -1,6 +1,7 @@
 package com.example.ecommerce.controller;
 
 import com.example.ecommerce.entity.dto.request.OrderStatusRequest;
+import com.example.ecommerce.entity.dto.response.OrderResponse;
 import com.example.ecommerce.entity.dto.response.ProductResponse;
 import com.example.ecommerce.entity.dto.response.UserResponse;
 import com.example.ecommerce.entity.order.Order;
@@ -9,6 +10,7 @@ import com.example.ecommerce.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class SellerController {
         return sellerService.getProducts(id);
     }
 
-    @PostMapping("/{id}/add-product")
+    @PostMapping(value = "/{id}/add-product")
     public Product addProduct(@PathVariable Long id, @RequestBody Product product){
         return sellerService.addProduct(id, product);
     }
@@ -36,7 +38,7 @@ public class SellerController {
     }
 
     @GetMapping("/{id}/orders")
-    public List<Order> getOrders(@PathVariable Long id){
+    public List<OrderResponse> getOrders(@PathVariable Long id){
         return sellerService.getOrders(id);
     }
 

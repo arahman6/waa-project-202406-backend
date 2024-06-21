@@ -1,6 +1,7 @@
 package com.example.ecommerce.service.impl;
 
 import com.example.ecommerce.entity.dto.request.OrderStatusRequest;
+import com.example.ecommerce.entity.dto.response.OrderResponse;
 import com.example.ecommerce.entity.dto.response.ProductResponse;
 import com.example.ecommerce.entity.dto.response.UserResponse;
 import com.example.ecommerce.entity.order.Item;
@@ -12,10 +13,17 @@ import com.example.ecommerce.repository.OrderRepository;
 import com.example.ecommerce.repository.ProductRepository;
 import com.example.ecommerce.repository.UserRepository;
 import com.example.ecommerce.service.SellerService;
+import com.example.ecommerce.util.ListMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +36,8 @@ import static com.example.ecommerce.entity.order.OrderStatus.SHIPPED;
 public class SellerServiceImpl implements SellerService {
     @Autowired
     ModelMapper modelMapper;
+    @Autowired
+    ListMapper listMapper;
 
     @Autowired
     UserRepository userRepository;
@@ -74,12 +84,12 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public List<Order> getOrders(Long sellerId) {
-        return orderRepository.findAll()
+    public List<OrderResponse> getOrders(Long sellerId) {
+        return listMapper.mapList(orderRepository.findAll()
                 .stream()
-                .filter(order->order.getStatus().equals(OrderStatus.PROCESSING))
+                //.filter(order->order.getStatus().equals(OrderStatus.PROCESSING))
                 .filter(order -> order.getSellerId().equals(sellerId))
-                .toList();
+                .toList(), new OrderResponse());
     }
 
     @Override
@@ -87,11 +97,17 @@ public class SellerServiceImpl implements SellerService {
         Order order = orderRepository.findById(orderId).orElse(null);
         if(order!= null && order.getSellerId().equals(sellerId)){
             order.setStatus(OrderStatus.CANCELLED);
+            orderRepository.save(order);
+            System.out.println("order canceled");
         }
+        System.out.println("order error");
     }
 
     @Override
     public void updateOrderStatus(Long sellerId, Long orderId, OrderStatusRequest orderStatus) {
+        if (orderStatus == null || orderStatus.getStatus() == null) {
+            throw new IllegalArgumentException("Order status must not be null");
+        }
         Order order = orderRepository.findById(orderId).orElse(null);
         if (order!= null && order.getSellerId().equals(sellerId)) {
 
