@@ -6,7 +6,7 @@ SELECT 1;
 INSERT INTO users (enable, id, username, password, email, first_name, last_name)
 VALUES
     (true, 1, 'admin', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'admin@example.com', 'Admin', 'User'),
-    (true, 2, 'buyer1', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'buyer1@example.com', 'Buyer', 'One'),
+    (true, 2, 'buyer1', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'arahman.isrt@gmail.com', 'Buyer', 'One'),
     (true, 3, 'buyer2', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'buyer2@example.com', 'Buyer', 'Two'),
     (true, 4, 'buyer3', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'buyer3@example.com', 'Buyer', 'Three'),
     (true, 5, 'seller1', '$2a$12$IKEQb00u5QpZMx4v5zMweu.3wrq0pS7XLCHO4yHZ.BW/yvWu1feo2', 'seller1@example.com', 'Seller', 'One'),
