@@ -5,9 +5,8 @@ import com.example.ecommerce.entity.category.SubCategory;
 import com.example.ecommerce.entity.dto.request.ProductRequest;
 import com.example.ecommerce.entity.dto.response.ProductResponse;
 import com.example.ecommerce.entity.dto.response.ReviewResponse;
+import com.example.ecommerce.entity.product.FilterCriteriaDTO;
 import com.example.ecommerce.entity.product.Product;
-import com.example.ecommerce.entity.product.ProductFilterDTO;
-import com.example.ecommerce.entity.product.Review;
 
 import com.example.ecommerce.entity.product.filter.*;
 import com.example.ecommerce.service.generic.GenericService;
@@ -49,6 +48,9 @@ public interface ProductService extends GenericService<Product, ProductRequest, 
             Boolean inStock,
             Boolean onSale,
             Boolean newArrival);
+
+    FilterCriteriaDTO getFilterCriteria();
+
 
 }
 
