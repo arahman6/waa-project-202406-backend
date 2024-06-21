@@ -6,6 +6,7 @@ import com.example.ecommerce.entity.category.SubCategory;
 import com.example.ecommerce.entity.dto.request.ProductRequest;
 import com.example.ecommerce.entity.dto.response.ProductResponse;
 import com.example.ecommerce.entity.dto.response.ReviewResponse;
+import com.example.ecommerce.entity.product.FilterCriteriaDTO;
 import com.example.ecommerce.entity.product.Product;
 import com.example.ecommerce.entity.product.Review;
 import com.example.ecommerce.entity.product.filter.*;
@@ -46,6 +47,11 @@ public class ProductController extends GenericControllerImpl<Product, ProductReq
             @RequestParam(required = false) Boolean newArrival) {
 
         return productService.getFilteredProducts(categories, subCategories, minPrice, maxPrice, brands, ratings, colors, sizes, materials, inStock, onSale, newArrival);
+    }
+
+    @GetMapping("/filter-criteria")
+    public FilterCriteriaDTO getFilterCriteria() {
+        return productService.getFilterCriteria();
     }
 
 

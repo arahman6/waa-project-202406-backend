@@ -5,10 +5,9 @@ import com.example.ecommerce.entity.category.SubCategory;
 import com.example.ecommerce.entity.dto.request.ProductRequest;
 import com.example.ecommerce.entity.dto.response.ProductResponse;
 import com.example.ecommerce.entity.dto.response.ReviewResponse;
+import com.example.ecommerce.entity.product.FilterCriteriaDTO;
 import com.example.ecommerce.entity.product.Product;
-import com.example.ecommerce.entity.product.ProductFilterDTO;
 import com.example.ecommerce.entity.product.ProductSpecifications;
-import com.example.ecommerce.entity.product.Review;
 import com.example.ecommerce.entity.product.filter.*;
 import com.example.ecommerce.repository.ProductRepository;
 import com.example.ecommerce.service.ProductService;
@@ -20,7 +19,9 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl extends GenericServiceImpl<Product, ProductRequest, ProductResponse, Long> implements ProductService {
@@ -112,4 +113,20 @@ public class ProductServiceImpl extends GenericServiceImpl<Product, ProductReque
 
         return productRepository.findAll(spec).stream().map(product -> modelMapper.map(product,ProductResponse.class)).toList();
     }
+
+    @Override
+    public FilterCriteriaDTO getFilterCriteria() {
+        FilterCriteriaDTO filterCriteria = new FilterCriteriaDTO();
+
+        filterCriteria.setBrands(Arrays.stream(Brand.values()).map(Enum::name).collect(Collectors.toList()));
+        filterCriteria.setCategories(Arrays.stream(com.example.ecommerce.entity.product.filter.Category.values()).map(Enum::name).collect(Collectors.toList()));
+        filterCriteria.setSubCategories(Arrays.stream(com.example.ecommerce.entity.product.filter.SubCategory.values()).map(Enum::name).collect(Collectors.toList()));
+        filterCriteria.setRatings(Arrays.stream(Rating.values()).map(Enum::name).collect(Collectors.toList()));
+        filterCriteria.setColors(Arrays.stream(Color.values()).map(Enum::name).collect(Collectors.toList()));
+        filterCriteria.setSizes(Arrays.stream(Size.values()).map(Enum::name).collect(Collectors.toList()));
+        filterCriteria.setMaterials(Arrays.stream(Material.values()).map(Enum::name).collect(Collectors.toList()));
+
+        return filterCriteria;
+    }
+
 }
