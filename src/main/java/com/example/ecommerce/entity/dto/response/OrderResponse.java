@@ -22,5 +22,5 @@ public class OrderResponse {
     private LocalDateTime deliveryDate;
     private double price;
     private OrderStatus status;
-    private List<Item> orderItems;
+    private List<ItemResponse> orderItems;
 }
