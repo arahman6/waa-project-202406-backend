@@ -6,10 +6,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
+import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Data
-public class Role {
+public class Role implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,4 +21,9 @@ public class Role {
     @JsonBackReference(value = "user-roles")
     @ToString.Exclude
     private User user;
+
+    @Override
+    public String getAuthority() {
+        return "ROLE_"+role;
+    }
 }

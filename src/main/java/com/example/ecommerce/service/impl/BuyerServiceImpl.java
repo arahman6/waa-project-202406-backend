@@ -48,6 +48,10 @@ public class BuyerServiceImpl implements BuyerService {
 
     @Override
     public void addItemToCart(Long buyId, Item item) {
+        Product managedProduct = productRepository.findById(item.getProduct().getId()).orElse(null);
+        if (managedProduct != null) {
+            item.setProduct(managedProduct);
+        }
         int qt = item.getQuantity();
         double productPrice = item.getProduct().getPrice();
         item.setPrice(qt*productPrice);
