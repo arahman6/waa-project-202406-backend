@@ -71,9 +71,9 @@ VALUES
     (10, 'Dolls', 5);
 --
 -- -- Inserting sample Products
-INSERT INTO product (id, purchased, user_id, brand, color,name, description, price, image_url, stock_quantity, sub_category_id)
+INSERT INTO product (id, purchased, user_id, brand, name, description, price, image_url, stock_quantity, sub_category_id)
 VALUES
-    (1, false, 5, 'APPLE', , 'iPhone 12', 'Latest Apple iPhone', 799.99, 'iphone12.jpg', 50, 1),
+    (1, false, 5, 'APPLE', 'iPhone 12', 'Latest Apple iPhone', 799.99, 'iphone12.jpg', 50, 1),
     (2, false, 5, 'SAMSUNG', 'Samsung Galaxy S21', 'Latest Samsung phone', 699.99, 'galaxys21.jpg', 45, 1),
     (3, false, 5, 'DELL', 'Dell XPS 13', 'High performance laptop', 999.99, 'dellxps13.jpg', 30, 2),
     (4, false, 6, 'APPLE', 'MacBook Pro', 'Apple laptop', 1299.99, 'macbookpro.jpg', 25, 2),
