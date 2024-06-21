@@ -1,5 +1,6 @@
 package com.example.ecommerce.service.impl;
 
+import com.example.ecommerce.entity.dto.response.CartResponse;
 import com.example.ecommerce.entity.dto.response.OrderResponse;
 import com.example.ecommerce.entity.order.Cart;
 import com.example.ecommerce.entity.order.Item;
@@ -13,6 +14,7 @@ import com.example.ecommerce.service.BuyerService;
 import com.example.ecommerce.service.EmailService;
 import com.example.ecommerce.util.ListMapper;
 import jakarta.transaction.Transactional;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +42,8 @@ public class BuyerServiceImpl implements BuyerService {
 
     @Autowired
     ListMapper listMapper;
+    @Autowired
+    ModelMapper modelMapper;
 
 
     @Override
@@ -89,15 +93,21 @@ public class BuyerServiceImpl implements BuyerService {
 
                 Order order = new Order();
                 order.setUser(buyer);
-                order.setOrderItems(sellerItems);
+                //order.setOrderItems(sellerItems);
                 order.setStatus(OrderStatus.PROCESSING);
 
                 double orderPrice =0;
+                List<Item> orderItems = new ArrayList<>();
                 for (Item item : sellerItems) {
                     cart.removeItem(item);
                     orderPrice+= item.getPrice();
+                    Item managedItem = itemRepository.findById(item.getId()).orElse(null);
+                    if (managedItem != null) {
+                        orderItems.add(managedItem);
+                    }
                 }
                 order.setPrice(orderPrice);
+                order.setOrderItems(orderItems);
                 Order savedOrder= orderRepository.save(order);
                 buyer.addOrder(savedOrder);
 
@@ -137,10 +147,10 @@ public class BuyerServiceImpl implements BuyerService {
     }
 
     @Override
-    public Cart getCart(Long id) {
+    public CartResponse getCart(Long id) {
         User user = userRepository.findById(id).orElse(null);
         if(user!= null){
-            return user.getCart();
+            return modelMapper.map(user.getCart(), CartResponse.class) ;
         }
         return null;
     }
