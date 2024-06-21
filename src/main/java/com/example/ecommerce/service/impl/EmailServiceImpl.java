@@ -8,6 +8,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.MailSendException;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -26,35 +27,32 @@ public class EmailServiceImpl implements EmailService {
     @Value("${smtp2go.api.key}")
     private String apiKey;
 
-    public void sendSimpleMessage(String to, String subject, String text) throws IOException {
-        Map<String, Object> emailData = new HashMap<>();
-        emailData.put("api_key", apiKey);
-
-        Map<String, Object> data = new HashMap<>();
-        data.put("sender", "your-email@example.com"); // Replace with your "from" email
-        data.put("to", new String[]{to});
-        data.put("subject", subject);
-        data.put("text_body", text);
-
-        emailData.put("data", data);
-
-        sendEmail(emailData);
-    }
+    //    public void sendSimpleMessage(String to, String subject, String text) throws IOException {
+//        Map<String, Object> emailData = new HashMap<>();
+//        emailData.put("api_key", apiKey);
+//
+//        Map<String, Object> data = new HashMap<>();
+//        data.put("sender", "your-email@example.com"); // Replace with your "from" email
+//        data.put("to", new String[]{to});
+//        data.put("subject", subject);
+//        data.put("text_body", text);
+//
+//        emailData.put("data", data);
+//
+//        sendEmail(emailData);
+//    }
 
     public void sendHtmlMessage(String to, String subject, String htmlBody) throws IOException {
         Map<String, Object> emailData = new HashMap<>();
-        emailData.put("api_key", apiKey);
-
-        Map<String, Object> data = new HashMap<>();
-        data.put("sender", "your-email@example.com"); // Replace with your "from" email
-        data.put("to", new String[]{to});
-        data.put("subject", subject);
-        data.put("html_body", htmlBody);
-
-        emailData.put("data", data);
+        String sender = "company-info@example.com";
+        emailData.put("sender", sender);
+        emailData.put("to", new String[]{to});
+        emailData.put("subject", subject);
+        emailData.put("html_body", htmlBody);
 
         sendEmail(emailData);
     }
+
 
     private void sendEmail(Map<String, Object> emailData) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -63,6 +61,7 @@ public class EmailServiceImpl implements EmailService {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpPost httpPost = new HttpPost(apiBaseUrl + "email/send");
             httpPost.setHeader("Content-Type", "application/json");
+            httpPost.setHeader("X-Smtp2go-Api-Key", apiKey);
             httpPost.setEntity(new StringEntity(json, StandardCharsets.UTF_8));
 
             try (CloseableHttpResponse response = httpClient.execute(httpPost)) {
@@ -70,8 +69,11 @@ public class EmailServiceImpl implements EmailService {
                 System.out.println(response.getStatusLine().getStatusCode());
                 System.out.println(responseString);
             }
+        } catch (IOException e) {
+            throw new MailSendException("Failed to send email", e);
         }
     }
+
 
 
 }
