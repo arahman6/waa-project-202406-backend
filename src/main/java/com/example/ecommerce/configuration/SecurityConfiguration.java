@@ -33,6 +33,8 @@ public class SecurityConfiguration {
 
     String[] roles = {"ADMIN", "BUYER", "SELLER"};
     String[] admin = {"ADMIN"};
+    String[] buyer = {"BUYER"};
+    String[] seller = {"SELLER"};
 
 
     @Bean
@@ -52,14 +54,13 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         auth -> auth
-//                                .requestMatchers(HttpMethod.PUT,"/api/v1/users/**").hasAnyRole(roles)
-//                                .requestMatchers("/api/v1/users/**").permitAll()
-//                                .requestMatchers("api/v1/authenticate/**").permitAll()
-//                                .requestMatchers("api/v1/admin/**").hasAnyAuthority(admin)
-//                                .requestMatchers("/api/v1/seller/**").hasRole("SELLER")
-//                                .requestMatchers("/api/v1/buyer/**").hasRole("BUYER")
+                                .requestMatchers(HttpMethod.PUT,"/api/v1/users/**").hasAnyRole(roles)
+                                .requestMatchers("/api/v1/users/**").permitAll()
+                                .requestMatchers("api/v1/authenticate/**").permitAll()
+                                .requestMatchers("api/v1/admin/**").hasAnyAuthority(admin)
+                                .requestMatchers("/api/v1/seller/**").hasAnyAuthority(seller)
+                                .requestMatchers("/api/v1/buyer/**").hasAnyAuthority(buyer)
                                 .anyRequest().permitAll()
-                                //.authenticated()
                 )
                 .sessionManagement(
                         session -> session
